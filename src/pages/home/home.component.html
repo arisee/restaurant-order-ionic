@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col width-10>
+          <ion-icon name="menu" (click)="openMenu()"></ion-icon>
+        </ion-col>
+        <ion-col width-90>
+          <ion-title>Home</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            <img src="../../assets/image/use.jpg">
+            <ion-label>Ngọc Huy</ion-label>
+          </ion-col>
+          <ion-col width-50>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="openPage(loginPage)" icon-right>
+        Danh sách bàn
+        <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+        <io
+      </button>
+      <button ion-item (click)="openPage(signupPage)" icon-right>
+        Danh sách món ăn
+        <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+<ion-content padding>
+  <button (click)="openMenu()" ion-button>Open menu</button>
+</ion-content>
