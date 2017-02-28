@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col width-10>
+          <ion-icon name="menu" (click)="openMenu()"></ion-icon>
+        </ion-col>
+        <ion-col width-90>
+          <ion-title>Home</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50>
+            <img src="assets/image/use.jpg">
+            <ion-label>Ngọc Huy</ion-label>
+          </ion-col>
+          <ion-col width-50>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-item-group>
+      <ion-item-divider color="light">Menu</ion-item-divider>
+      <ion-item (click)="pushTablePage()">Danh sách bàn</ion-item>
+      <ion-item (click)="pushDishPage()">Danh sách món ăn</ion-item>
+    </ion-item-group>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+<ion-content padding>
+  <ion-card>
+    <img src="assets/image/home1.jpg"/>
+    <div class="card-title">Thịt</div>
+    <div class="card-subtitle">Nổi bật</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/image/home2.jpg"/>
+    <div class="card-title">Rau</div>
+    <div class="card-subtitle">Nổi bật</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/image/home3.png"/>
+    <div class="card-title">Nướng</div>
+    <div class="card-subtitle">Nổi bật</div>
+  </ion-card>
+</ion-content>

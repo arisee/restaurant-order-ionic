@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Danh sách món ăn</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar></ion-searchbar>
+  <ion-item>
+    <ion-select>
+      <ion-option value="still" selected="true">Còn</ion-option>
+      <ion-option value="outofstock">Hết</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-list>
+    <ion-card ion-item *ngFor="let dish of dishs" [navPush]="pushPage">
+      <dish-directive [item]="dish"></dish-directive>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,17 @@
+ion-header{
+  ion-navbar{
+    ion-title{
+      ion-select{
+        max-width:100%;
+      }
+    }
+  }
+}
+ion-content{
+  ion-grid{
+    p{
+      font-size: 10px;
+      text-align: center;
+    }
+  }
+}
