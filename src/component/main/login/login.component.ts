@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController, AlertController} from "ionic-angular";
 import {HomePage} from "../home/home.component";
 
 @Component({
@@ -8,7 +8,8 @@ import {HomePage} from "../home/home.component";
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+
   }
 
   ionViewDidLoad() {
@@ -19,5 +20,7 @@ export class LoginPage {
     this.navCtrl.push(HomePage);
   }
 
+  presentAlert(){
 
+  }
 }

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Đặt bàn trước</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="reserveForm" (ngSubmit)="getFormData()">
+    <ion-item>
+      <ion-label>Tên bàn:</ion-label>
+      <ion-select formControlName="table">
+        <ion-option *ngFor="let table of tables" [value]="table">{{table.name}}<span>({{table.location}})</span>
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Thời gian:</ion-label>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:mm" formControlName="dateTime"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tên khách hàng:</ion-label>
+      <ion-input type="text" formControlName="customerName"></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+              *ngIf="!reserveForm.controls.customerName.valid && reserveForm.controls.customerName.dirty">
+      <p>
+        Tên khách hàng trống
+      </p>
+    </ion-item>
+    <ion-item>
+      <ion-label>Số điện thoại:</ion-label>
+      <ion-input type="text" formControlName="phone" ></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+              *ngIf="!reserveForm.controls.phone.valid && reserveForm.controls.phone.dirty">
+      <p>
+        Tên khách hàng trống
+      </p>
+    </ion-item>
+    <ion-item>
+      <ion-label>Số người:</ion-label>
+      <ion-input type="text" formControlName="quantity"></ion-input>
+    </ion-item>
+    <button ion-button full type="submit" [disabled]="!reserveForm.valid">Đặt bàn</button>
+  </form>
+</ion-content>
+

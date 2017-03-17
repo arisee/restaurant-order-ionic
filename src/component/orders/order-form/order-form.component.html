@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let dish of dishs">
+    <order-item-component [item]="dish"></order-item-component>
+  </ion-card>
+</ion-content>

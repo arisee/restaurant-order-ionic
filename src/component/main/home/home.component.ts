@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
-import {NavController, MenuController} from 'ionic-angular';
-import {TableComponent} from "../../tables/tables.component";
-import {DishsComponent} from "../../dishs/dishs.component";
+import {Component} from "@angular/core";
+import {NavController, MenuController} from "ionic-angular";
+import {TablesComponent} from "../../tables/tables.component";
+import {DishesComponent} from "../../dishes/dishes.component";
+import {ReservesComponent} from "../../reserves/reserves.component";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.component.html'
 })
 export class HomePage {
+  pushReservesPage : any;
   constructor(public navCtrl: NavController,public menuCrl: MenuController) {
+    this.pushReservesPage = ReservesComponent;
   }
 
   openMenu(){
@@ -16,11 +19,11 @@ export class HomePage {
   }
 
   pushTablePage(){
-    this.navCtrl.push(TableComponent);
+    this.navCtrl.push(TablesComponent);
   }
 
-  pushDishPage(){
-    this.navCtrl.push(DishsComponent);
+  pushListDish(){
+    this.navCtrl.push(DishesComponent);
   }
 
 }

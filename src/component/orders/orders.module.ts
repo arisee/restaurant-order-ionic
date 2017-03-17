@@ -1,28 +1,28 @@
 import {NgModule} from "@angular/core";
-import {OrderComponent} from "./order.component";
-import {MenuService} from "./shared/menu.service";
-import {MenuComponent} from "./menu/menu.component";
+import {OrderComponent} from "./orders.component";
 import {IonicModule} from "ionic-angular";
-import {DishDirective} from "./dish/dish.directive";
 import {OrderItemComponent} from "./order-item/order-item.component";
+import {OrderFormComponent} from "./order-form/order-form.component";
+import {OrderItemService} from "./shared/order-item.service";
+import {DishesModule} from "../dishes/dishes.module";
+
 @NgModule({
   declarations: [
     OrderComponent,
-    MenuComponent,
     OrderItemComponent,
-    DishDirective
+    OrderFormComponent,
   ],
   imports: [
     IonicModule.forRoot(OrderComponent),
+    DishesModule
   ],
   entryComponents: [
     OrderComponent,
-    MenuComponent,
     OrderItemComponent,
-    DishDirective
+    OrderFormComponent
   ],
   providers: [
-    MenuService
+    OrderItemService
   ]
 })
 

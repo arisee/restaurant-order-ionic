@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Danh sách bàn đặt trước</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list ion-item *ngFor="let reserve of (reserves)">
+    <reserve-directive [item]="reserve"></reserve-directive>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-icon name="add-circle" [navPush]="pushPageForm"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

@@ -33,7 +33,8 @@
     <ion-item-group>
       <ion-item-divider color="light">Menu</ion-item-divider>
       <ion-item (click)="pushTablePage()">Danh sách bàn</ion-item>
-      <ion-item (click)="pushDishPage()">Danh sách món ăn</ion-item>
+      <ion-item (click)="pushListDish()">Danh sách món ăn</ion-item>
+      <ion-item [navPush]="pushReservesPage">Danh sách bàn đặt trước</ion-item>
     </ion-item-group>
   </ion-content>
 </ion-menu>

@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var ionic_angular_1 = require("ionic-angular");
 var app_component_1 = require("./app.component");
-var home_1 = require("../component/main/home/home");
-var dish_component_1 = require("../component/dish/dish.component");
-var login_1 = require("../component/main/login/login");
-var search_1 = require("../component/main/search/search");
-var order_component_1 = require("../component/order/order.component");
-var menu_service_1 = require("../component/order/menu/menu.service");
-var menu_component_1 = require("../component/order/menu/menu.component");
-var table_module_1 = require("../component/tables/table.module");
+var home_component_1 = require("../component/main/home/home.component");
+var tables_module_1 = require("../component/tables/tables.module");
+var login_component_1 = require("../component/main/login/login.component");
+var search_component_1 = require("../component/main/search/search.component");
+var orders_module_1 = require("../component/orders/orders.module");
+var login_service_1 = require("../component/main/login/login.service");
+var home_service_1 = require("../component/main/home/home.service");
+var dishs_module_1 = require("../component/dishs/dishs.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,30 +23,27 @@ var AppModule = (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.MyApp,
-                home_1.HomePage,
-                login_1.LoginPage,
-                dish_component_1.DishPage,
-                search_1.SearchPage,
-                order_component_1.OrderPage,
-                menu_component_1.MenuComponent,
+                home_component_1.HomePage,
+                login_component_1.LoginPage,
+                search_component_1.SearchComponent,
             ],
             imports: [
                 ionic_angular_1.IonicModule.forRoot(app_component_1.MyApp),
-                table_module_1.TableModule
+                tables_module_1.TableModule,
+                orders_module_1.OrderModule,
+                dishs_module_1.DishsModule
             ],
             bootstrap: [ionic_angular_1.IonicApp],
             entryComponents: [
                 app_component_1.MyApp,
-                home_1.HomePage,
-                login_1.LoginPage,
-                dish_component_1.DishPage,
-                search_1.SearchPage,
-                order_component_1.OrderPage,
-                menu_component_1.MenuComponent,
+                home_component_1.HomePage,
+                login_component_1.LoginPage,
+                search_component_1.SearchComponent
             ],
             providers: [
                 { provide: core_1.ErrorHandler, useClass: ionic_angular_1.IonicErrorHandler },
-                menu_service_1.MenuService,
+                login_service_1.LoginService,
+                home_service_1.HomeService
             ]
         })
     ], AppModule);

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Danh sách món ăn</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Tìm kiếm" [(ngModel)]="filter.search"></ion-searchbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-30>
+        <ion-item>
+          <ion-select [(ngModel)]="filter.status">
+            <ion-option value="" selected="true">Tất cả</ion-option>
+            <ion-option value="1">Còn</ion-option>
+            <ion-option value="0">Hết</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col width-70>
+        <ion-item>
+          <ion-select [(ngModel)]="filter.category">
+            <ion-option value="" selected="true">Tất cả</ion-option>
+            <ion-option value="1">Món chính</ion-option>
+            <ion-option value="2">Món phụ</ion-option>
+            <ion-option value="3">Món nướng</ion-option>
+            <ion-option value="4">Canh</ion-option>
+            <ion-option value="5">Lẩu</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngFor="let dish of (dishes |statusPipe:filter.status| categoryPipe:filter.category | searchPipe: filter.search )">
+    <dish-directive [item]="dish" ></dish-directive>
+  </ion-card>
+</ion-content>

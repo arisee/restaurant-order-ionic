@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Danh sách bàn
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <ion-input type="text" placeholder="Tên bàn" [(ngModel)]="filter.searchName"></ion-input>
+      </ion-col>
+      <ion-col width-50>
+        <ion-input type="text" placeholder="Vị trị bàn" [(ngModel)]="filter.searchLocation"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label>Trạng thái: </ion-label>
+    <ion-select [(ngModel)]="filter.status">
+      <ion-option value="" selected="true">Tất cả</ion-option>
+      <ion-option value="0">Chưa đặt món</ion-option>
+      <ion-option value="1">Đã đặt món</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-card *ngFor="let table of (tables | statusPipe:filter.status | searchNamePipe: filter.searchName | searchLocationPipe: filter.searchLocation)">
+    <table-directive [item]="table"></table-directive>
+  </ion-card>
+</ion-content>

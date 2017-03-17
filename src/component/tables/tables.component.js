@@ -7,25 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 require('rxjs/add/operator/map');
-var search_1 = require("../main/search/search");
-var order_component_1 = require("../order/order.component");
-var TableComponent = (function () {
-    function TableComponent(navCtrl, actionSheetCtrl, tableService) {
+var orders_component_1 = require("../orders/orders.component");
+var search_component_1 = require("../main/search/search.component");
+var TablesComponent = (function () {
+    function TablesComponent(navCtrl, actionSheetCtrl, tableService) {
         this.navCtrl = navCtrl;
         this.actionSheetCtrl = actionSheetCtrl;
         this.tableService = tableService;
         this.tables = [];
     }
-    TableComponent.prototype.ionViewWillEnter = function () {
+    TablesComponent.prototype.ionViewWillEnter = function () {
         var _this = this;
         this.tableService.getTables()
             .then(function (tables) { return _this.tables = tables; });
         console.log('ionViewDidLoad TablePage');
     };
-    TableComponent.prototype.pushSearch = function () {
-        this.navCtrl.push(search_1.SearchPage);
+    TablesComponent.prototype.pushSearch = function () {
+        this.navCtrl.push(search_component_1.SearchComponent);
     };
-    TableComponent.prototype.presentActionSheet = function () {
+    TablesComponent.prototype.presentActionSheet = function () {
         var _this = this;
         var actionSheet = this.actionSheetCtrl.create({
             title: 'Tùy chọn',
@@ -34,19 +34,19 @@ var TableComponent = (function () {
                     text: 'Order',
                     role: 'Order',
                     handler: function () {
-                        _this.navCtrl.push(order_component_1.OrderPage);
+                        _this.navCtrl.push(orders_component_1.OrderComponent);
                     }
                 }
             ]
         });
         actionSheet.present();
     };
-    TableComponent = __decorate([
+    TablesComponent = __decorate([
         core_1.Component({
-            selector: 'table-component',
-            templateUrl: 'table.html'
+            selector: 'tables-component',
+            templateUrl: 'tables.component.html'
         })
-    ], TableComponent);
-    return TableComponent;
+    ], TablesComponent);
+    return TablesComponent;
 }());
-exports.TableComponent = TableComponent;
+exports.TablesComponent = TablesComponent;

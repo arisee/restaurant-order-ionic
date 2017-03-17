@@ -1,2 +1,9 @@
-<img src="assets/image/table.png">
-<p>{{table.name}} - {{table.location}}</p>
+<div [style.background-color]="table.status ? '#FF4B4B': '#FFFFD3'">
+  <button ion-button class="move">Thanh toán</button>
+  <img src="assets/image/table.png">
+  <p class="name">{{table.name}}</p>
+  <p class="location">{{table.location}}</p>
+  <button ion-button [navPush]="pushOrderPage">Đặt món</button>
+  <button ion-button>Chuyển bàn</button>
+  <button ion-button [navPush]="pushReservePage">Đặt trước</button>
+</div>

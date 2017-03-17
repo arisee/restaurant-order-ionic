@@ -1,0 +1,15 @@
+reserve-form-component{
+  ion-content{
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md{
+      color:black;
+    }
+    button{
+      margin: 0 auto;
+    }
+    .error-message {
+      p {
+        color: #FF6153;
+      }
+    }
+  }
+}
