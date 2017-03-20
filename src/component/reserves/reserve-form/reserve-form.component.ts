@@ -22,8 +22,8 @@ export class ReserveFormComponent {
     this.reserveForm = formBuilder.group({
       table: ['',Validators.required],
       dateTime: ['',Validators.required],
-      customerName: ['',Validators.compose([Validators.required,NameValidator.checkName])],
-      phone: ['',Validators.compose([Validators.required,Validators.minLength(10),Validators.pattern('[0-9]*')])],
+      customerName: ['',Validators.required],
+      phone: ['',Validators.compose([Validators.pattern('[0-9]*'),Validators.required])],
       quantity: ['',Validators.required]
     });
   }
@@ -34,6 +34,7 @@ export class ReserveFormComponent {
         this.tables = tables;
         console.log(this.tables);
       });
+    console.log('reserve-form:' + this.reserveForm);
   }
 
   getFormData() {

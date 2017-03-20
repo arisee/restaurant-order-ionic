@@ -23,19 +23,15 @@
     </ion-item>
     <ion-item class="error-message"
               *ngIf="!reserveForm.controls.customerName.valid && reserveForm.controls.customerName.dirty">
-      <p>
-        Tên khách hàng trống
-      </p>
+      <p>Không được để trống</p>
     </ion-item>
     <ion-item>
       <ion-label>Số điện thoại:</ion-label>
-      <ion-input type="text" formControlName="phone" ></ion-input>
+      <ion-input type="tel" formControlName="phone"></ion-input>
     </ion-item>
     <ion-item class="error-message"
               *ngIf="!reserveForm.controls.phone.valid && reserveForm.controls.phone.dirty">
-      <p>
-        Tên khách hàng trống
-      </p>
+      <p>Chỉ nhập số hoặc không được trống</p>
     </ion-item>
     <ion-item>
       <ion-label>Số người:</ion-label>

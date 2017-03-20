@@ -5,5 +5,5 @@
   <p class="location">{{table.location}}</p>
   <button ion-button [navPush]="pushOrderPage">Đặt món</button>
   <button ion-button>Chuyển bàn</button>
-  <button ion-button [navPush]="pushReservePage">Đặt trước</button>
+  <button ion-button (click)="getReserveByTableID(table.id)">Đặt trước</button>
 </div>

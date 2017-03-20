@@ -10,8 +10,25 @@ export class ReservesService {
     this.RESERVES = RESERVES;
   }
 
-  getReserve() {
-    return Promise.resolve(this.RESERVES);
+  getReserve(tableID: Number, search: string) {
+    let rs = [];
+
+    this.RESERVES.forEach((reserve) => {
+      let isFilter = false;
+      if (tableID != null && reserve.table.id != tableID) {
+        isFilter = true;
+      }
+      if (!isFilter && search != null && search.length) {
+        if (reserve.customerName.indexOf(search) == -1) {
+          isFilter = true;
+        }
+      }
+      if (!isFilter) {
+        rs.push(reserve);
+      }
+    });
+
+    return rs;
   }
 
   save(form) {
@@ -24,4 +41,5 @@ export class ReservesService {
     this.RESERVES.push(rev);
     return this.RESERVES;
   }
+
 }

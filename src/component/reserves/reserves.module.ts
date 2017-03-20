@@ -10,8 +10,7 @@ import {ValidatorDirective} from "./component/validator.drirective";
   declarations: [
     ReservesComponent,
     ReserveFormComponent,
-    ReserveItemDirective,
-    ValidatorDirective
+    ReserveItemDirective
   ],
   imports: [
     IonicModule.forRoot(ReservesComponent)
@@ -19,8 +18,7 @@ import {ValidatorDirective} from "./component/validator.drirective";
   entryComponents: [
     ReservesComponent,
     ReserveFormComponent,
-    ReserveItemDirective,
-    ValidatorDirective
+    ReserveItemDirective
   ],
   exports: [],
   providers: [

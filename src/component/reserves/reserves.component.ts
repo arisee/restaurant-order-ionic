@@ -12,16 +12,17 @@ export class ReservesComponent {
   reserves: Reserve[] = [];
   pushPageForm: any
   reserve = {};
+  tableID:any;
 
   constructor(public reservesService: ReservesService,
               public navParams: NavParams) {
     this.pushPageForm = ReserveFormComponent;
     this.reserve = navParams.get('reserve');
+    this.tableID = navParams.get('tableID');
   }
 
   ionViewWillEnter() {
-    this.reservesService.getReserve()
-      .then(reserves => this.reserves = reserves);
+    this.reserves = this.reservesService.getReserve(this.tableID, "");
   }
 
 }
