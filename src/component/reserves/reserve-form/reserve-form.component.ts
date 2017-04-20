@@ -5,7 +5,6 @@ import {Table} from "../../tables/shared/table.model";
 import {ReservesService} from "../shared/reserves.service";
 import {ReservesComponent} from "../reserves.component";
 import {FormBuilder, Validators} from "@angular/forms";
-import {NameValidator} from "../component/name.validator";
 @Component({
   selector: 'reserve-form-component',
   templateUrl: 'reserve-form.component.html'
@@ -29,11 +28,7 @@ export class ReserveFormComponent {
   }
 
   ionViewWillEnter() {
-    this.tableService.getTables()
-      .then(tables => {
-        this.tables = tables;
-        console.log(this.tables);
-      });
+    this.tables = this.tableService.getTables();
     console.log('reserve-form:' + this.reserveForm);
   }
 

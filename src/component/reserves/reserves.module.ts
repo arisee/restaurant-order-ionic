@@ -4,7 +4,6 @@ import {NgModule} from "@angular/core";
 import {ReservesService} from "./shared/reserves.service";
 import {ReserveFormComponent} from "./reserve-form/reserve-form.component";
 import {ReserveItemDirective} from "./component/reserve-item.directive";
-import {ValidatorDirective} from "./component/validator.drirective";
 
 @NgModule({
   declarations: [

@@ -3,21 +3,32 @@ import {Table} from "../shared/table.model";
 import {ReservesComponent} from "../../reserves/reserves.component";
 import {OrderComponent} from "../../orders/orders.component";
 import {NavController} from "ionic-angular";
-import {ReservesService} from "../../reserves/shared/reserves.service";
+import {MoveTableComponent} from "./move-table.component";
 @Component({
   selector: 'table-directive',
   templateUrl: 'table.directive.html'
 })
 export class TableDirective {
-  pushOrderPage : any;
   @Input('item') table: Table;
-  constructor(public navCtrl: NavController, public reserveService: ReservesService) {
-    this.pushOrderPage = OrderComponent;
+
+  constructor(public navCtrl: NavController) {
   }
 
-  getReserveByTableID(tableID){
-    this.navCtrl.push(ReservesComponent,{
-      tableID:tableID
+  getReserveByTableID(tableID) {
+    this.navCtrl.push(ReservesComponent, {
+      tableID: tableID
+    });
+  }
+
+  pushOrderPage() {
+    this.navCtrl.push(OrderComponent, {
+      table: this.table
+    });
+  }
+
+  move() {
+    this.navCtrl.push(MoveTableComponent,{
+      table:this.table
     });
   }
 }

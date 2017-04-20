@@ -1,25 +1,27 @@
 page-login {
-  .header{
-    background:url("../../../assets/image/bg.jpg");
+  ion-header {
+    background-image: url('../assets/image/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120px;
+    height: 140px;
   }
 
-  .login{
-    //background-image: url("../../assets/image/background.jpg") ;
-    //background-repeat: no-repeat;
-    //background-size: cover;
+  .login {
+    p{
+      color: red;
+    }
+    .item-md {
+      padding-left: 0px;
+    }
 
-    ion-list{
-      ion-item{
-        padding-left: 0px;
-      }
+    ion-item {
+      padding-left: 0px;
+    }
 
-      button{
-        margin-top: 30px;
-        margin-bottom: 20px;
-      }
+    button {
+      margin-top: 20px;
+      margin-top: 30px;
+      margin-bottom: 20px;
     }
   }
 }

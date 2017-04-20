@@ -1,6 +1,20 @@
-<dish-directive [item]="dish"></dish-directive>
-<div class="btn">
-  <ion-icon ion-button name="remove" (click)="removeQuantity()"></ion-icon>
-  <label>{{quantity}}</label>
-  <ion-icon ion-button name="add" (click)="addQuantity()"></ion-icon>
-</div>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Order item</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="save(dish)">
+    <img src="{{dish.src}}">
+    <p class="name">Tên món: {{dish.name}}</p>
+    <p class="price">Giá: {{dish.price}} VND</p>
+    Số lượng:
+    <ion-icon name="remove" ion-button (click)="removeQuantity()"></ion-icon>
+    <span>{{quantity}}</span>
+    <ion-icon name="add" ion-button (click)="addQuantity()"></ion-icon>
+    <p>Ghi chú: </p>
+    <ion-input placeholder="Nhập ghi chú" [(ngModel)]="description" name="description"></ion-input>
+    <button ion-button full stype="submit">Chọn món</button>
+  </form>
+</ion-content>

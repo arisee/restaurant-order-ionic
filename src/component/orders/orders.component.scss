@@ -1,4 +1,37 @@
+
 page-order {
+  ion-header{
+    ion-navbar{
+      ion-icon{
+        float:right;
+        font-size:30px;
+      }
+    }
+  }
+  ion-content {
+    .icon-remove{
+      float: right;
+      font-size: 25px;
+    }
+    .item{
+      padding-bottom: 10px;
+    }
+    .icon-status{
+      float:right;
+      padding-right: 10px;
+      color: red;
+    }
+    .customerName{
+      padding: 5px;
+    }
+    .list-md {
+      margin: 2px 0px 5px 0px;
+    }
+    img {
+      height: 10px;
+      float: right;
+    }
+  }
   ion-footer {
     ion-toolbar {
       ion-title {
@@ -10,6 +43,7 @@ page-order {
         ion-icon {
           float: right;
           font-size: 30px;
+          padding-left: 8px;
         }
       }
     }

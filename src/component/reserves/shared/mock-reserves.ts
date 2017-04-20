@@ -10,7 +10,18 @@ export const RESERVES:Reserve[] =[
     table:{
       id: 1, name: "Bàn 1", status: TableStatus.AVAILABLE, location: "Khu A Tầng 1"
     }
-  },{
+  },
+  {
+    id:5  ,
+    customerName:"Nguyễn Văn E",
+    quantity:10,
+    phone:'01626791050',
+    dateTime:new Date("2017-03-01T20:44:00+07:00"),
+    table:{
+      id: 1, name: "Bàn 5", status: TableStatus.AVAILABLE, location: "Khu C Tầng 2"
+    }
+  }
+  ,{
     id:2,
     customerName:"Nguyễn Văn B",
     quantity:3,

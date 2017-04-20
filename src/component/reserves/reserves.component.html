@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-list ion-item *ngFor="let reserve of (reserves)">
+  <div ion-item *ngFor="let reserve of (reserves)">
     <reserve-directive [item]="reserve"></reserve-directive>
-  </ion-list>
+  </div>
 </ion-content>
 
 <ion-footer>

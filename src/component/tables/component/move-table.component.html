@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Chuyển bàn</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      {{table.name}}
+    </ion-card-header>
+    <ion-card-content>
+      {{table.location}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label>Chuyển sang bàn:</ion-label>
+      <ion-select [(ngModel)]="tBDestination">
+        <ion-option *ngFor="let table of tables" [value]="table">{{table.name}}<span>({{table.location}})</span>
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+        <button ion-button (click)="move()">
+          Chuyển
+          <ion-icon name="navigate"></ion-icon>
+        </button>
+
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-content>

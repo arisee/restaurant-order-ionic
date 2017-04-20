@@ -1,25 +1,19 @@
-<ion-header class="header">
+<ion-header>
 </ion-header>
 
 <ion-content padding class="login">
-
-  <ion-list>
-
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label floating>Tài khoản</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" formControlName="username"></ion-input>
     </ion-item>
-
+    <p *ngIf="!loginForm.controls.username.valid && loginForm.controls.username.dirty">Không hợp lệ</p>
     <ion-item>
       <ion-label floating>Mật khẩu</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
+    <p *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">Không hợp lệ</p>
 
-    <button ion-button block color="secondary" (click)="pushPage()">Đăng nhập</button>
-
-    <ion-label style="color: #32DB64;text-align: center">Quên mật khẩu</ion-label>
-
-  </ion-list>
-
-
+    <button ion-button block color="secondary" type="submit" [disabled]="!loginForm.valid">Đăng nhập</button>
+  </form>
 </ion-content>

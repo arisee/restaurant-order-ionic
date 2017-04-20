@@ -3,7 +3,8 @@ import {TableService} from "./shared/table.service";
 import "rxjs/add/operator/map";
 import {NavController} from "ionic-angular";
 import {Table} from "./shared/table.model";
-import {SearchComponent} from "../main/search/search.component";
+import {TABLE_PROCESSING_ORDERS} from "../orders/shared/mock-table-processing-order";
+
 @Component({
   selector: 'tables-component',
   templateUrl: 'tables.component.html'
@@ -20,15 +21,11 @@ export class TablesComponent {
 
   constructor(public navCtrl: NavController,
               public tableService: TableService) {
+    console.log('tableProcessingOrdersService: ' + TABLE_PROCESSING_ORDERS);
   }
 
   ionViewWillEnter() {
-    this.tableService.getTables()
-      .then(tables => this.tables = tables);
+    this.tables = this.tableService.getTables();
     console.log('ionViewDidLoad TablePage');
-  }
-
-  pushSearch() {
-    this.navCtrl.push(SearchComponent);
   }
 }

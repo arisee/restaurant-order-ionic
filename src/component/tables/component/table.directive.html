@@ -1,9 +1,19 @@
-<div [style.background-color]="table.status ? '#FF4B4B': '#FFFFD3'">
+<ion-card [style.background-color]="table.status ? '#FFFFD3': '#FF4B4B'">
   <button ion-button class="move">Thanh toán</button>
   <img src="assets/image/table.png">
-  <p class="name">{{table.name}}</p>
-  <p class="location">{{table.location}}</p>
-  <button ion-button [navPush]="pushOrderPage">Đặt món</button>
-  <button ion-button>Chuyển bàn</button>
-  <button ion-button (click)="getReserveByTableID(table.id)">Đặt trước</button>
-</div>
+  <ion-card-content>
+    <p class="name">{{table.name}}</p>
+    <p class="location">{{table.location}}</p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left small (click)="pushOrderPage()">Đặt món</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left small (click)="move()" [disabled]="!table.status == 0">Chuyển</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left small (click)="getReserveByTableID(table.id)">Đặt trước</button>
+    </ion-col>
+  </ion-row>
+</ion-card>

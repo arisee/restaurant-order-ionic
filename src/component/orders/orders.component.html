@@ -1,20 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>order</ion-title>
+  <ion-navbar hideBackButton="true">
+    <ion-row>
+      <ion-icon name="arrow-round-back" [navPush]="pushTablePage"></ion-icon>
+      <ion-col>
+        <ion-title>order</ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="checkmark" (click)="save()"></ion-icon>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <div *ngIf="tableProcessingOrder!= null">
+    <div name="information" float="left" width="80%">
+      <ion-card *ngFor="let item of processingOrderItem;let i = index" [attr.data-index]="i" class="item">
+        <ion-icon name="trash" item-right (click)="deleteItem(i)" class="icon-remove"></ion-icon>
+        <ion-card-header>Tên món: {{item.dish.name}}</ion-card-header>
+        <ion-card-content>
+          Ghi chú: {{item.description}}<br/>
+          Số lượng: {{item.quantity}}
+        </ion-card-content>
+        <ion-spinner name="bubbles" *ngIf="item.status == 2" class="icon-status"></ion-spinner>
+        <ion-icon name="checkmark" *ngIf="item.status == 4" class="icon-status"></ion-icon>
+        <ion-icon name="close" *ngIf="item.status == 3" class="icon-status"></ion-icon>
+      </ion-card>
+    </div>
+  </div>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-title>
-      <button ion-button icon-rigth>Gửi bếp
-        <ion-icon name="send"></ion-icon>
-      </button>
-
+      <span *ngIf="tableProcessingOrder.customerName != ''">{{tableProcessingOrder.customerName}}</span>
       <ion-icon name="add-circle" (click)="pushMenuPage()"></ion-icon>
+      <ion-icon name="person-add" (click)="setCustomerName()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

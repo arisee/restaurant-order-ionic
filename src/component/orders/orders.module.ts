@@ -5,12 +5,15 @@ import {OrderItemComponent} from "./order-item/order-item.component";
 import {OrderFormComponent} from "./order-form/order-form.component";
 import {OrderItemService} from "./shared/order-item.service";
 import {DishesModule} from "../dishes/dishes.module";
+import {OrderService} from "./shared/order.service";
+import {TableProcessingOrdersServive} from "./shared/table-processing-order.service";
+import {CurrentTableProcessingOrderService} from "./shared/current-table-processing-order.service";
 
 @NgModule({
   declarations: [
     OrderComponent,
     OrderItemComponent,
-    OrderFormComponent,
+    OrderFormComponent
   ],
   imports: [
     IonicModule.forRoot(OrderComponent),
@@ -22,7 +25,10 @@ import {DishesModule} from "../dishes/dishes.module";
     OrderFormComponent
   ],
   providers: [
-    OrderItemService
+    OrderService,
+    OrderItemService,
+    TableProcessingOrdersServive,
+    CurrentTableProcessingOrderService
   ]
 })
 

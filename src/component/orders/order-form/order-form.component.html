@@ -1,10 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title></ion-title>
+    <ion-title>order-form</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-card *ngFor="let dish of dishs">
-    <order-item-component [item]="dish"></order-item-component>
+  <ion-searchbar placeholder="Tìm kiếm" [(ngModel)]="filter.search"></ion-searchbar>
+  <ion-card *ngFor="let dish of dishs | searchPipe:filter.search">
+    <dish-directive *ngIf="dish.status" [item]="dish" (click)="pushOrderItemPage(dish)"></dish-directive>
   </ion-card>
 </ion-content>

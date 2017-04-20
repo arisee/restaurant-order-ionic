@@ -3,6 +3,14 @@ reserve-form-component{
     .item-input .label-md, .item-select .label-md, .item-datetime .label-md{
       color:black;
     }
+
+    .select-md {
+      padding: 13px 8px 13px 9px;
+    }
+
+    ion-select{
+      max-width: 100%;
+    }
     button{
       margin: 0 auto;
     }

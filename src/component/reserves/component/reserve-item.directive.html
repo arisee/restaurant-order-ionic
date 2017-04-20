@@ -1,8 +1,11 @@
-<div class="all">
-  {{reserve.table.name}}
+<ion-card class="all">
+  <ion-card-title>{{reserve.table.name}}
   ( {{reserve.table.location}} )<br/>
+  </ion-card-title>
+  <ion-card-content>
   {{reserve.dateTime}}
   <p>Tên khách hàng:{{reserve.customerName}}</p>
   <p>Số lượng: {{reserve.quantity}}</p>
   <p>Số điện thoại:{{reserve.phone}}</p>
-</div>
+  </ion-card-content>
+</ion-card>

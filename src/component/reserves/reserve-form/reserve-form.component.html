@@ -14,11 +14,11 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Thời gian:</ion-label>
+      <ion-label floating>Thời gian:</ion-label>
       <ion-datetime displayFormat="YYYY/MM/DD HH:mm" formControlName="dateTime"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Tên khách hàng:</ion-label>
+      <ion-label floating>Tên khách hàng:</ion-label>
       <ion-input type="text" formControlName="customerName"></ion-input>
     </ion-item>
     <ion-item class="error-message"
@@ -26,7 +26,7 @@
       <p>Không được để trống</p>
     </ion-item>
     <ion-item>
-      <ion-label>Số điện thoại:</ion-label>
+      <ion-label floating>Số điện thoại:</ion-label>
       <ion-input type="tel" formControlName="phone"></ion-input>
     </ion-item>
     <ion-item class="error-message"
@@ -34,7 +34,7 @@
       <p>Chỉ nhập số hoặc không được trống</p>
     </ion-item>
     <ion-item>
-      <ion-label>Số người:</ion-label>
+      <ion-label floating>Số người:</ion-label>
       <ion-input type="text" formControlName="quantity"></ion-input>
     </ion-item>
     <button ion-button full type="submit" [disabled]="!reserveForm.valid">Đặt bàn</button>

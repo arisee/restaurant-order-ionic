@@ -24,6 +24,7 @@ import {DishesSearchPipe} from "./component/search.pipe";
   ],
   exports: [
     DishDirective,
+    DishesSearchPipe
   ],
   providers: [
     DishesService

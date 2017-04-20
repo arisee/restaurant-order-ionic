@@ -1,17 +1,37 @@
 import {Component} from "@angular/core";
 import {Dish} from "../../dishes/shared/dish.model";
 import {OrderItemService} from "../shared/order-item.service";
+import {NavController, NavParams} from "ionic-angular";
+import {OrderItemComponent} from "../order-item/order-item.component";
+import {Table} from "../../tables/shared/table.model";
+import {TableProcessingOrder} from "../shared/table-processing-order.model";
 @Component({
   selector:"order-form",
   templateUrl:"order-form.component.html"
 })
 export class OrderFormComponent{
-  dishs: Dish[] = []
-  constructor(public orderItemService: OrderItemService) {
+  dishs: Dish[] = [];
+  table: Table;
+  filter = {
+    search:""
+  };
+  tableProcessingOrder: TableProcessingOrder;
+  constructor(public orderItemService: OrderItemService,
+              public navCtrl: NavController,
+              public navParams: NavParams) {
+    this.table = this.navParams.get('table');
+    this.tableProcessingOrder = this.navParams.get('tableProcessingOrders');
   }
 
   ionViewWillEnter(){
     this.orderItemService.getDishs()
       .then(dishs => this.dishs = dishs)
+  }
+
+  pushOrderItemPage(dish:Dish){
+    this.navCtrl.push(OrderItemComponent,{
+      dish:dish,
+      table:this.table
+    });
   }
 }
