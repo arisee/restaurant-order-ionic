@@ -4,6 +4,6 @@ export class Reserve {
   customerName: string;
   quantity:number;
   phone:string;
-  dateTime: Date;
+  scheduleOn:number;
   table: Table;
 }

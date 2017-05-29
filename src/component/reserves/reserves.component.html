@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <div ion-item *ngFor="let reserve of (reserves)">
+  <div *ngFor="let reserve of (reserves)">
     <reserve-directive [item]="reserve"></reserve-directive>
   </div>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-icon name="add-circle" [navPush]="pushPageForm"></ion-icon>
+    <ion-icon name="add-circle" (click)="pushPageForm()"></ion-icon>
   </ion-toolbar>
 </ion-footer>

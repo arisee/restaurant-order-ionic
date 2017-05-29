@@ -6,16 +6,24 @@
 
 <ion-content padding>
   <form [formGroup]="reserveForm" (ngSubmit)="getFormData()">
-    <ion-item>
+    <ion-item *ngIf="tableID == null">
       <ion-label>Tên bàn:</ion-label>
       <ion-select formControlName="table">
         <ion-option *ngFor="let table of tables" [value]="table">{{table.name}}<span>({{table.location}})</span>
         </ion-option>
       </ion-select>
     </ion-item>
+    <ion-item *ngIf="tableID != null">
+      <ion-label>Tên bàn:</ion-label>
+      <br/>
+      <ion-select formControlName="table">
+        <ion-option [value]="table">{{table.name}}({{table.location}})
+        </ion-option>
+      </ion-select>
+    </ion-item>
     <ion-item>
       <ion-label floating>Thời gian:</ion-label>
-      <ion-datetime displayFormat="YYYY/MM/DD HH:mm" formControlName="dateTime"></ion-datetime>
+      <ion-datetime displayFormat="YYYY/MM/DD HH:mm" formControlName="scheduleOn"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label floating>Tên khách hàng:</ion-label>
@@ -36,6 +44,10 @@
     <ion-item>
       <ion-label floating>Số người:</ion-label>
       <ion-input type="text" formControlName="quantity"></ion-input>
+    </ion-item>
+    <ion-item class="error-message"
+              *ngIf="!reserveForm.controls.quantity.valid && reserveForm.controls.quantity.dirty">
+      <p>Chỉ nhập số hoặc không được trống</p>
     </ion-item>
     <button ion-button full type="submit" [disabled]="!reserveForm.valid">Đặt bàn</button>
   </form>

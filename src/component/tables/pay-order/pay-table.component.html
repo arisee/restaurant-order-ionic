@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Thanh toán</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      {{table.name}}<br/>
+      {{table.location}}<br/>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item *ngFor="let item of items">
+      {{item.dish.name}}<br/>
+      {{item.quantity}}x{{item.dish.price}} VND
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      Tổng tiền : {{total}} VND
+    </ion-item>
+  </ion-card>
+  <button ion-button block>Thanh toán</button>
+</ion-content>

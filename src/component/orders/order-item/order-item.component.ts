@@ -1,9 +1,10 @@
-import {Component} from "@angular/core";
-import {Dish} from "../../dishes/shared/dish.model";
-import {NavParams, NavController, AlertController} from "ionic-angular";
-import {OrderComponent} from "../orders.component";
-import {Table} from "../../tables/shared/table.model";
-import {CurrentTableProcessingOrderService} from "../shared/current-table-processing-order.service";
+import { Component } from "@angular/core";
+import { Dish } from "../../dishes/shared/dish.model";
+import { NavParams, NavController, AlertController } from "ionic-angular";
+import { OrderComponent } from "../orders.component";
+import { Table } from "../../tables/shared/table.model";
+import { CurrentTableProcessingOrderService } from "../shared/current-table-processing-order.service";
+import { TableProcessingOrdersServive } from "../shared/table-processing-order.service";
 
 @Component({
   selector: "order-item-component",
@@ -15,13 +16,13 @@ export class OrderItemComponent {
   quantity = 0;
   total = 0;
   description = '';
-  table:Table;
-  search :"";
+  table: Table;
+  search: "";
 
   constructor(public params: NavParams,
               public navCrtl: NavController,
               public alertCtrl: AlertController,
-              public currentTableProcessingOrderSerive: CurrentTableProcessingOrderService ) {
+              public currentTableProcessingOrderSerive: CurrentTableProcessingOrderService) {
     this.dish = this.params.get('dish');
     this.table = this.params.get('table');
     this.description = '';
@@ -43,16 +44,17 @@ export class OrderItemComponent {
     }
   }
 
-  save(){
-    if(this.quantity > 0){
-      this.currentTableProcessingOrderSerive.addOrderItem(this.dish,this.table,this.description,this.quantity);
-      this.navCrtl.push(OrderComponent,{
-        table:this.table
+  save() {
+    if (this.quantity > 0) {
+      this.currentTableProcessingOrderSerive.addOrderItem(this.dish, this.description, this.quantity);
+      this.navCrtl.push(OrderComponent, {
+        table: this.table
       });
-    }else{
+    } else {
       this.showAlert();
     }
   }
+
   showAlert() {
     let alert = this.alertCtrl.create({
       subTitle: 'Bạn phải chọn số lượng để đặt món!',

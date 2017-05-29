@@ -1,14 +1,19 @@
-import {Component} from "@angular/core";
-import {MenuController} from "ionic-angular";
+import { Component } from "@angular/core";
+import { MenuController, NavParams } from "ionic-angular";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.component.html'
 })
 export class HomePage {
-  constructor(public menuCrl: MenuController){}
+  user: any;
 
-  openMenu(){
+  constructor(public menuCrl: MenuController,
+              public navParams: NavParams) {
+    this.user = navParams.get('user');
+  }
+
+  openMenu() {
     this.menuCrl.toggle();
   }
 }

@@ -1,9 +1,8 @@
-import {Component} from "@angular/core";
-import {TableService} from "./shared/table.service";
+import { Component } from "@angular/core";
+import { TableService } from "./shared/table.service";
 import "rxjs/add/operator/map";
-import {NavController} from "ionic-angular";
-import {Table} from "./shared/table.model";
-import {TABLE_PROCESSING_ORDERS} from "../orders/shared/mock-table-processing-order";
+import { NavController } from "ionic-angular";
+import { Table } from "./shared/table.model";
 
 @Component({
   selector: 'tables-component',
@@ -21,11 +20,13 @@ export class TablesComponent {
 
   constructor(public navCtrl: NavController,
               public tableService: TableService) {
-    console.log('tableProcessingOrdersService: ' + TABLE_PROCESSING_ORDERS);
   }
 
   ionViewWillEnter() {
-    this.tables = this.tableService.getTables();
-    console.log('ionViewDidLoad TablePage');
+    console.log('Table Component Page');
+    this.tableService.getTables()
+      .subscribe(tables => {
+        this.tables = tables;
+      });
   }
 }

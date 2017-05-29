@@ -1,5 +1,5 @@
 <ion-card [style.background-color]="table.status ? '#FFFFD3': '#FF4B4B'">
-  <button ion-button class="move">Thanh toán</button>
+  <button ion-button class="pay" (click)="pay()">Thanh toán</button>
   <img src="assets/image/table.png">
   <ion-card-content>
     <p class="name">{{table.name}}</p>

@@ -6,7 +6,8 @@ import {TablesComponent} from "./tables.component";
 import {TablesStatusPipe} from "./component/status.pipe";
 import {TablesSearchNamePipe} from "./component/search.pipe";
 import {TableSearchLocationPipe} from "./component/search.location.pipe";
-import {MoveTableComponent} from "./component/move-table.component";
+import {MoveTableComponent} from "./move-order/move-table.component";
+import { PayTableComponent } from "./pay-order/pay-table.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {MoveTableComponent} from "./component/move-table.component";
     TablesStatusPipe,
     TablesSearchNamePipe,
     TableSearchLocationPipe,
-    MoveTableComponent
+    MoveTableComponent,
+    PayTableComponent
   ],
   imports:[
     IonicModule.forRoot(TablesComponent)
@@ -23,7 +25,8 @@ import {MoveTableComponent} from "./component/move-table.component";
   entryComponents: [
     TableDirective,
     TablesComponent,
-    MoveTableComponent
+    MoveTableComponent,
+    PayTableComponent
   ],
   providers:[
     TableService

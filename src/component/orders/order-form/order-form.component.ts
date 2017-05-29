@@ -5,6 +5,7 @@ import {NavController, NavParams} from "ionic-angular";
 import {OrderItemComponent} from "../order-item/order-item.component";
 import {Table} from "../../tables/shared/table.model";
 import {TableProcessingOrder} from "../shared/table-processing-order.model";
+import { DishesService } from "../../dishes/shared/dishes.service";
 @Component({
   selector:"order-form",
   templateUrl:"order-form.component.html"
@@ -18,14 +19,17 @@ export class OrderFormComponent{
   tableProcessingOrder: TableProcessingOrder;
   constructor(public orderItemService: OrderItemService,
               public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public dishesSevice : DishesService) {
     this.table = this.navParams.get('table');
     this.tableProcessingOrder = this.navParams.get('tableProcessingOrders');
   }
 
   ionViewWillEnter(){
-    this.orderItemService.getDishs()
-      .then(dishs => this.dishs = dishs)
+    this.dishesSevice.getDish()
+      .subscribe(dishes => {
+        this.dishs = dishes;
+      });
   }
 
   pushOrderItemPage(dish:Dish){

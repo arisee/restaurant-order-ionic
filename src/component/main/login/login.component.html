@@ -1,7 +1,14 @@
-<ion-header>
-</ion-header>
-
 <ion-content padding class="login">
+  <ion-grid>
+    <ion-row>
+      <ion-col width-25></ion-col>
+      <ion-col width-50>
+        <img src="assets/image/logo1.png">
+        <p>Restaurant Staff</p>
+      </ion-col>
+      <ion-col width-25></ion-col>
+    </ion-row>
+  </ion-grid>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label floating>Tài khoản</ion-label>
@@ -14,6 +21,6 @@
     </ion-item>
     <p *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">Không hợp lệ</p>
 
-    <button ion-button block color="secondary" type="submit" [disabled]="!loginForm.valid">Đăng nhập</button>
+    <button ion-button block color="danger" type="submit" [disabled]="!loginForm.valid">Đăng nhập</button>
   </form>
 </ion-content>

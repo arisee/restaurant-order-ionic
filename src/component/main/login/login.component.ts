@@ -1,42 +1,41 @@
-import {Component} from "@angular/core";
-import {NavController, AlertController} from "ionic-angular";
-import {HomePage} from "../home/home.component";
-import {USERS} from "../shared/mock-user";
-import {User} from "../shared/user.model";
-import {FormBuilder, Validators} from "@angular/forms";
+import { Component } from "@angular/core";
+import { AlertController, Events, NavController } from "ionic-angular";
+import { HomePage } from "../home/home.component";
+import { FormBuilder, Validators } from "@angular/forms";
+import { LoginService } from "../shared/login.service";
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.component.html'
 })
 export class LoginPage {
-  user: User;
+  user: any;
   loginForm: any;
 
   constructor(public navCtrl: NavController,
               public alertCtrl: AlertController,
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder,
+              public loginService: LoginService,
+              public events: Events) {
     this.loginForm = formBuilder.group({
-      username: ['',Validators.compose([Validators.pattern('[0-9a-zA-Z]*'),Validators.required])],
-      password: ['',Validators.compose([Validators.pattern('[0-9a-zA-Z]*'),Validators.required])]
+      username: ['', Validators.compose([Validators.pattern('[0-9a-zA-Z]*'), Validators.required])],
+      password: ['', Validators.compose([Validators.pattern('[0-9a-zA-Z]*'), Validators.required])]
     })
   }
 
   login() {
-    let users = USERS;
-    if (this.loginForm.value.username != null && this.loginForm.value.password != null) {
-      for (let i = 0; i < users.length; i++) {
-        if (this.loginForm.value.username == users[i].username && this.loginForm.value.password == users[i].password) {
-          this.pushHome();
-          this.user = new User();
-          this.user = users[i];
-          break;
-        }
-      }
-    }
-    if (this.user == null) {
-      this.showAlert();
-    }
+    let body = {
+      userName: this.loginForm.value.username,
+      passWord: this.loginForm.value.password
+    };
+    this.loginService.login(body)
+      .subscribe(user => {
+        this.user = user;
+        this.loginService.getUser(user);
+        this.pushHome();
+      }, error => {
+        this.showAlert();
+      });
   }
 
   pushHome() {
@@ -47,7 +46,6 @@ export class LoginPage {
 
   showAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Lỗi!',
       subTitle: 'Tài khoản hoặc mật khẩu không đúng',
       buttons: ['OK']
     });

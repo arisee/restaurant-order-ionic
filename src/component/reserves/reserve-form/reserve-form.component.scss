@@ -1,19 +1,21 @@
-reserve-form-component{
-  ion-content{
-    .item-input .label-md, .item-select .label-md, .item-datetime .label-md{
-      color:black;
+reserve-form-component {
+  ion-content {
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+      color: black;
     }
 
-    .select-md {
-      padding: 13px 8px 13px 9px;
+    .item-md {
+      padding-left: 0px;
     }
 
-    ion-select{
+    ion-select {
       max-width: 100%;
     }
-    button{
-      margin: 0 auto;
+
+    button {
+      margin-top: 20px;
     }
+
     .error-message {
       p {
         color: #FF6153;

@@ -8,7 +8,9 @@ export class DishesService{
   }
 
   getDish(){
-    return Promise.resolve(DISHES);
+    // return Promise.resolve(DISHES);
+    return this.http.get('/api/dishes')
+      .map(res => res.json());
   }
 
 }

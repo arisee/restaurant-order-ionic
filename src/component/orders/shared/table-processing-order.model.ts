@@ -1,14 +1,14 @@
 import {Table} from "../../tables/shared/table.model";
 import {ProcessingOrderItem} from "./processing-order-item.model";
 export class TableProcessingOrder {
-  table: Table;
-  processingOrderItem: ProcessingOrderItem[];
-  userId: number;
+  tableId : number;
+  items: ProcessingOrderItem[];
   customerName: string;
-  dateTime: Date;
+  status : number;
+  createdDate: Date;
 
   constructor() {
-    this.processingOrderItem = [];
+    this.items = [];
     this.customerName = "";
   }
 }

@@ -23,6 +23,11 @@ export class DishesComponent {
   ionViewWillEnter() {
     console.log('dishes-component');
     this.dishesService.getDish()
-      .then(dishes => this.dishes = dishes);
+      .subscribe(dishes => {
+        this.dishes = dishes;
+      })
+    // this.dishesService.getDish()
+    //   .then(dishes => this.dishes = dishes);
+
   }
 }

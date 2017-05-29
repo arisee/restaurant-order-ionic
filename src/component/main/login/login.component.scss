@@ -1,17 +1,38 @@
 page-login {
-  ion-header {
-    background-image: url('../assets/image/bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 140px;
+  //ion-header {
+  //  background-image: url('../assets/image/bg.jpg');
+  //  background-repeat: no-repeat;
+  //  background-size: cover;
+  //  height: 140px;
+  //}
+
+  img{
+    width: 100%;
   }
 
   .login {
-    p{
+    background-image: url('../assets/image/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    ion-grid{
+      p{
+        color: white;
+        font-size: 15px;
+      }
+    }
+
+    form p{
       color: red;
     }
+
+    input{
+      color: white;
+    }
+
     .item-md {
       padding-left: 0px;
+      background-color: transparent;
     }
 
     ion-item {
@@ -19,9 +40,12 @@ page-login {
     }
 
     button {
-      margin-top: 20px;
       margin-top: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .item-input .label-md{
+      color: white;
     }
   }
 }

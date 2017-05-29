@@ -1,12 +1,12 @@
-import {Component} from "@angular/core";
-import {NavController, NavParams, AlertController} from "ionic-angular";
-import {OrderFormComponent} from "./order-form/order-form.component";
-import {Table} from "../tables/shared/table.model";
-import {TablesComponent} from "../tables/tables.component";
-import {TableProcessingOrder} from "./shared/table-processing-order.model";
-import {CurrentTableProcessingOrderService} from "./shared/current-table-processing-order.service";
-import {TableProcessingOrdersServive} from "./shared/table-processing-order.service";
-import {TableService} from "../tables/shared/table.service";
+import { Component } from "@angular/core";
+import { AlertController, NavController, NavParams } from "ionic-angular";
+import { OrderFormComponent } from "./order-form/order-form.component";
+import { Table } from "../tables/shared/table.model";
+import { TablesComponent } from "../tables/tables.component";
+import { TableProcessingOrder } from "./shared/table-processing-order.model";
+import { CurrentTableProcessingOrderService } from "./shared/current-table-processing-order.service";
+import { TableProcessingOrdersServive } from "./shared/table-processing-order.service";
+import { TableService } from "../tables/shared/table.service";
 
 @Component({
   selector: 'page-order',
@@ -15,9 +15,10 @@ import {TableService} from "../tables/shared/table.service";
 
 export class OrderComponent {
   table: Table;
-  tableProcessingOrder: TableProcessingOrder;
+  tableProcessingOrder: TableProcessingOrder = null;
+
   isDisplay = false;
-  pushTablePage : any;
+  pushTablePage: any;
   customerName: string = "";
   processingOrderItem = [];
 
@@ -26,18 +27,34 @@ export class OrderComponent {
               public currentTableProcessingOrderSerive: CurrentTableProcessingOrderService,
               public tableProcessingOrdersService: TableProcessingOrdersServive,
               public alertCtrl: AlertController,
-              public tableService:TableService) {
+              public tableService: TableService) {
     this.pushTablePage = TablesComponent;
     this.table = this.navParams.get('table');
-    this.tableProcessingOrder = this.currentTableProcessingOrderSerive.get(this.table);
-    if (this.tableProcessingOrder != null) {
-      this.processingOrderItem = this.tableProcessingOrder.processingOrderItem
+
+    if (this.currentTableProcessingOrderSerive.getCurrenOrder() != null &&
+      this.currentTableProcessingOrderSerive.getCurrenOrder().tableId == this.table.id) {
+      this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
+    } else {
+      this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
+        .subscribe(res => {
+            this.currentTableProcessingOrderSerive.setCurrenOrder(res);
+            this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
+            this.customerName = this.tableProcessingOrder.customerName;
+          }, error => {
+            let order: TableProcessingOrder = new TableProcessingOrder();
+            order.tableId = this.table.id;
+            order.status = 0;
+            order.customerName = "";
+            this.currentTableProcessingOrderSerive.setCurrenOrder(order);
+            this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
+          }
+        );
     }
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');
-
   }
 
   pushMenuPage() {
@@ -51,12 +68,16 @@ export class OrderComponent {
   }
 
   save() {
-    if (this.tableProcessingOrder != null) {
-      this.tableProcessingOrdersService.save(this.tableProcessingOrder,this.table);
+    if (this.customerName != "") {
+      if (this.tableProcessingOrder != null) {
+        this.tableProcessingOrdersService.save(this.table.id, this.tableProcessingOrder);
+      } else {
+        console.log('tableProcessingOrder is null')
+      }
+      this.navCtrl.push(TablesComponent);
     } else {
-      console.log('tableProcessingOrder is null')
+      this.cutomerNameNull();
     }
-    this.navCtrl.push(TablesComponent);
   }
 
   deleteItem(index: number) {
@@ -64,6 +85,36 @@ export class OrderComponent {
   }
 
   setCustomerName() {
+    if(this.customerName == ""){
+      let alert = this.alertCtrl.create({
+        title: 'Tên khách hàng',
+        inputs: [
+          {
+            name: 'customerName',
+            placeholder: 'Nhập tên khách hàng'
+          }
+        ],
+        buttons: [
+          {
+            text: 'Hủy',
+            role: 'cancel'
+          },
+          {
+            text: 'Thêm',
+            handler: data => {
+              this.customerName = data.customerName;
+              this.currentTableProcessingOrderSerive.addCustomerName(data.customerName);
+            }
+          }
+        ],
+      });
+      alert.present();
+    }else{
+      this.updateCustomerName();
+    }
+  }
+
+  updateCustomerName() {
     let alert = this.alertCtrl.create({
       title: 'Tên khách hàng',
       inputs: [
@@ -78,8 +129,9 @@ export class OrderComponent {
           role: 'cancel'
         },
         {
-          text:'Thêm',
-          handler:data =>{
+          text: 'Sửa',
+          handler: data => {
+            this.customerName = data.customerName;
             this.currentTableProcessingOrderSerive.addCustomerName(data.customerName);
           }
         }
@@ -88,4 +140,11 @@ export class OrderComponent {
     alert.present();
   }
 
+  cutomerNameNull() {
+    let alert = this.alertCtrl.create({
+      subTitle: 'Vui lòng nhập tên khách hàng',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }

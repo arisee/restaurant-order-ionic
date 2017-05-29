@@ -1,6 +1,7 @@
 export class User{
   id:number;
-  fullname:string;
-  username:string;
-  password:string;
+  fullName:string;
+  userName:string;
+  passWord:string;
+  image:string;
 }

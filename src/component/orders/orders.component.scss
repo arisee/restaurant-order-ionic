@@ -1,27 +1,44 @@
 
 page-order {
-  ion-header{
-    ion-navbar{
-      ion-icon{
-        float:right;
-        font-size:30px;
+  ion-header {
+    ion-navbar {
+      ion-icon {
+        float: right;
+        font-size: 30px;
       }
     }
   }
+
   ion-content {
-    .icon-remove{
+    ion-card{
+      color: white;
+      .card-header{
+        color: white;
+      }
+    }
+    .available {
+      background-color: #d9534f;
+    }
+    .notAvailabe{
+      background-color:#f0ad4e;
+    }
+    .finish{
+      background-color: #0275d8;
+    }
+    .icon-remove {
       float: right;
       font-size: 25px;
     }
-    .item{
+
+    .item {
       padding-bottom: 10px;
     }
-    .icon-status{
-      float:right;
+    .icon-status {
+      float: right;
       padding-right: 10px;
       color: red;
     }
-    .customerName{
+    .customerName {
       padding: 5px;
     }
     .list-md {
@@ -32,6 +49,7 @@ page-order {
       float: right;
     }
   }
+
   ion-footer {
     ion-toolbar {
       ion-title {

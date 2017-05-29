@@ -1,15 +1,16 @@
 import {User} from "./user.model";
 export const USERS: User[] = [
-  {
-    id:1,
-    fullname:"Trần Ngọc Huy",
-    username:"1",
-    password:"1"
-  },
-  {
-    id:2,
-    fullname:"Nguyễn Văn A",
-    username:"admin1",
-    password:"admin1"
-  }
+  // {
+  //   id:1,
+  //   fullName:"Trần Ngọc Huy",
+  //   userName:"1",
+  //   passWord:"1"
+  //   image:""
+  // },
+  // {
+  //   id:2,
+  //   fullName:"Nguyễn Văn A",
+  //   userName:"admin1",
+  //   passWord:"admin1"
+  // }
 ]

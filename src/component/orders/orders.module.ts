@@ -8,6 +8,7 @@ import {DishesModule} from "../dishes/dishes.module";
 import {OrderService} from "./shared/order.service";
 import {TableProcessingOrdersServive} from "./shared/table-processing-order.service";
 import {CurrentTableProcessingOrderService} from "./shared/current-table-processing-order.service";
+import { TableModule } from "../tables/tables.module";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {CurrentTableProcessingOrderService} from "./shared/current-table-process
   ],
   imports: [
     IonicModule.forRoot(OrderComponent),
-    DishesModule
+    DishesModule,
+    TableModule
   ],
   entryComponents: [
     OrderComponent,
