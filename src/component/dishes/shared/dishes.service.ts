@@ -1,6 +1,5 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {DISHES} from "./mock-dishs";
+import { Injectable } from "@angular/core";
+import { Http } from "@angular/http";
 
 @Injectable()
 export class DishesService{

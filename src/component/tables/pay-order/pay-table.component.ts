@@ -2,9 +2,7 @@ import { Component } from "@angular/core";
 import { Table } from "../shared/table.model";
 import { NavParams } from "ionic-angular";
 import { TableProcessingOrdersServive } from "../../orders/shared/table-processing-order.service";
-import { TableProcessingOrder } from "../../orders/shared/table-processing-order.model";
 import { ProcessingOrderItem } from "../../orders/shared/processing-order-item.model";
-import { Dish } from "../../dishes/shared/dish.model";
 @Component({
   selector: 'pay-table-component',
   templateUrl: 'pay-table.component.html'

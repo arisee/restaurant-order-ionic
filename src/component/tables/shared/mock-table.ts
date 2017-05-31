@@ -1,5 +1,4 @@
-import {Table} from "./table.model";
-import {TableStatus} from "./table-status.enum";
+import { Table } from "./table.model";
 
 export const TABLES: Table[] = [
   // {

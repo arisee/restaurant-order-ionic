@@ -3,6 +3,7 @@ import { TableService } from "./shared/table.service";
 import "rxjs/add/operator/map";
 import { NavController } from "ionic-angular";
 import { Table } from "./shared/table.model";
+import { HomePage } from "../main/home/home.component";
 
 @Component({
   selector: 'tables-component',
@@ -15,7 +16,7 @@ export class TablesComponent {
     status: "",
     searchName: "",
     searchLocation: ""
-  }
+  };
 
 
   constructor(public navCtrl: NavController,
@@ -29,4 +30,8 @@ export class TablesComponent {
         this.tables = tables;
       });
   }
+
+  // takeMeBack() {
+  //   this.navCtrl.push(HomePage);
+  // }
 }

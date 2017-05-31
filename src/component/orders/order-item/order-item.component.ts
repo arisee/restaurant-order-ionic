@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
 import { Dish } from "../../dishes/shared/dish.model";
-import { NavParams, NavController, AlertController } from "ionic-angular";
+import { AlertController, NavController, NavParams } from "ionic-angular";
 import { OrderComponent } from "../orders.component";
 import { Table } from "../../tables/shared/table.model";
 import { CurrentTableProcessingOrderService } from "../shared/current-table-processing-order.service";
-import { TableProcessingOrdersServive } from "../shared/table-processing-order.service";
 
 @Component({
   selector: "order-item-component",

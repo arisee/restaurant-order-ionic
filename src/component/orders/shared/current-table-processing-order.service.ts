@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { TableProcessingOrder } from "./table-processing-order.model";
 import { ProcessingOrderItem } from "./processing-order-item.model";
 import { TableProcessingOrdersServive } from "./table-processing-order.service";
-import { OrderStatus } from "./order-status.enum";
-import { Table } from "../../tables/shared/table.model";
 import { Dish } from "../../dishes/shared/dish.model";
 
 @Injectable()

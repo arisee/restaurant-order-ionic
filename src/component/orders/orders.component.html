@@ -1,14 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-row>
-      <ion-col>
-        <ion-title>order</ion-title>
-      </ion-col>
-      <ion-col>
-        <ion-icon name="checkmark" (click)="save()"></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-navbar>
+  <ion-toolbar>
+    <button ion-button icon-only menuToggle (click)="takeMeBack()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </button>
+    <ion-title>
+    <span>Đặt món</span>
+    <ion-icon name="checkmark" (click)="save()"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -16,7 +15,8 @@
     <div name="information" float="left" width="80%">
       <ion-card *ngFor="let item of tableProcessingOrder.items;let i = index" [attr.data-index]="i" class="item"
                 [ngClass]="{'notAvailabe':item.status == 1,'available': item.status == 0,'finish': item.status == 2}">
-        <ion-icon name="trash" item-right *ngIf="item.status == 0" (click)="deleteItem(i)" class="icon-remove"></ion-icon>
+        <ion-icon name="trash" item-right *ngIf="item.status == 0" (click)="deleteItem(i)"
+                  class="icon-remove"></ion-icon>
         <ion-card-header class="card-header">{{item.dish.name}}</ion-card-header>
         <ion-card-content>
           Ghi chú: {{item.description}}<br/>

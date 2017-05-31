@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AlertController, NavController, NavParams } from "ionic-angular";
+import { AlertController, NavController, NavParams, Platform, Tab } from "ionic-angular";
 import { OrderFormComponent } from "./order-form/order-form.component";
 import { Table } from "../tables/shared/table.model";
 import { TablesComponent } from "../tables/tables.component";
@@ -21,19 +21,23 @@ export class OrderComponent {
   pushTablePage: any;
   customerName: string = "";
   processingOrderItem = [];
+  tabBarElement: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public currentTableProcessingOrderSerive: CurrentTableProcessingOrderService,
               public tableProcessingOrdersService: TableProcessingOrdersServive,
               public alertCtrl: AlertController,
-              public tableService: TableService) {
+              public tableService: TableService,
+              public platform: Platform) {
     this.pushTablePage = TablesComponent;
     this.table = this.navParams.get('table');
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar')
 
     if (this.currentTableProcessingOrderSerive.getCurrenOrder() != null &&
       this.currentTableProcessingOrderSerive.getCurrenOrder().tableId == this.table.id) {
       this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
+      this.customerName = this.tableProcessingOrder.customerName;
     } else {
       this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
         .subscribe(res => {
@@ -53,8 +57,23 @@ export class OrderComponent {
 
   }
 
+  // customBackButton() {
+  //   this.platform.registerBackButtonAction(() => {
+  //     let view = this.navCtrl.getActive();
+  //     if(view.instance instanceof OrderComponent){
+  //       this.navCtrl.push(TablesComponent);
+  //     }else{
+  //       this.navCtrl.pop();
+  //     }
+  //   })
+  // }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');
+  }
+
+  takeMeBack() {
+    this.navCtrl.push(TablesComponent);
   }
 
   pushMenuPage() {
@@ -85,7 +104,7 @@ export class OrderComponent {
   }
 
   setCustomerName() {
-    if(this.customerName == ""){
+    if (this.customerName == "") {
       let alert = this.alertCtrl.create({
         title: 'Tên khách hàng',
         inputs: [
@@ -109,7 +128,7 @@ export class OrderComponent {
         ],
       });
       alert.present();
-    }else{
+    } else {
       this.updateCustomerName();
     }
   }
@@ -147,4 +166,6 @@ export class OrderComponent {
     });
     alert.present();
   }
+
+
 }

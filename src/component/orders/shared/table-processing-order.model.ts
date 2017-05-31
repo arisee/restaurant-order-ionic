@@ -1,5 +1,4 @@
-import {Table} from "../../tables/shared/table.model";
-import {ProcessingOrderItem} from "./processing-order-item.model";
+import { ProcessingOrderItem } from "./processing-order-item.model";
 export class TableProcessingOrder {
   tableId : number;
   items: ProcessingOrderItem[];
