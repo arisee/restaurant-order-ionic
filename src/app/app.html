@@ -1,1 +1,35 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+  <!--<ion-header>-->
+    <!--<ion-toolbar>-->
+      <!--<ion-grid>-->
+        <!--<ion-row>-->
+          <!--<ion-col width-25></ion-col>-->
+          <!--<ion-col width-50 *ngIf="user != null" class="user">-->
+            <!--<img src="{{user.image}}">-->
+            <!--<ion-label>{{user.fullName}}</ion-label>-->
+          <!--</ion-col>-->
+          <!--<ion-col width-25></ion-col>-->
+        <!--</ion-row>-->
+      <!--</ion-grid>-->
+    <!--</ion-toolbar>-->
+  <!--</ion-header>-->
+  <ion-content class="my-container" padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-10></ion-col>
+        <ion-col width-90 *ngIf="user != null" class="user">
+          <img src="{{user.image}}"><br/>
+          <p>{{user.fullName}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon item-left [name]="p.icon"></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>

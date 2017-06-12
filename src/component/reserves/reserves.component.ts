@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { ReservesService } from "./shared/reserves.service";
 import { Reserve } from "./shared/reserve.model";
 import { ReserveFormComponent } from "./reserve-form/reserve-form.component";
-import { NavController, NavParams } from "ionic-angular";
-import { TableService } from "../tables/shared/table.service";
+import { MenuController, Navbar, NavController, NavParams } from "ionic-angular";
+import { TablesComponent } from "../tables/tables.component";
 @Component({
   selector: "reserves-component",
   templateUrl: "reserves.component.html"
@@ -13,38 +13,45 @@ export class ReservesComponent {
   reserves: Reserve[] = [];
   reserve = {};
   tableID: any;
+  @ViewChild('backButton') navBar: Navbar;
 
-  constructor(public reservesService: ReservesService,
+  constructor(public menuCtrl: MenuController,
+              public reservesService: ReservesService,
               public navParams: NavParams,
-              public tableSerive : TableService,
-              public navCtrl : NavController) {
+              public navCtrl: NavController) {
     this.reserve = navParams.get('reserve');
     this.tableID = navParams.get('tableID');
   }
 
   ionViewWillEnter() {
-    // this.reserves = this.reservesService.getReserve(this.tableID, "");
+    this.navBar.backButtonClick = () => {
+      this.navCtrl.push(TablesComponent);
+    };
     if (this.tableID != null) {
       this.reservesService.findByTableId(this.tableID)
         .subscribe(res => {
           this.reserves = res;
-        },error => {
+        }, error => {
           console.log('not found by tableId');
         })
     } else {
       this.reservesService.getReserve()
         .subscribe(res => {
           this.reserves = res;
-        },error2 => {
+        }, error2 => {
           console.log('error');
         })
     }
   }
 
-  pushPageForm(){
-    this.navCtrl.push(ReserveFormComponent,{
-      tableID : this.tableID
+  pushPageForm() {
+    this.navCtrl.push(ReserveFormComponent, {
+      tableID: this.tableID
     })
+  }
+
+  openMenu() {
+    this.menuCtrl.toggle();
   }
 
 }

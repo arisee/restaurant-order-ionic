@@ -39,12 +39,16 @@ export class CurrentTableProcessingOrderService {
     }
     pord.quantity += quantiy;
     pord.description = description;
-    console.log(this.order);
     return this.order;
   }
 
   addCustomerName(customerName: string) {
     this.order.customerName = customerName;
+  }
+
+  addInformationCustomer(customerName: string, phone: string){
+    this.order.customerName = customerName;
+    this.order.phone = phone;
   }
 
   delete(id: number, tableID: number) {

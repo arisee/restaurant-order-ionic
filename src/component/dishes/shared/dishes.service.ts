@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
+import { AppSettings } from "../../main/shared/AppSettings";
 
 @Injectable()
 export class DishesService{
@@ -7,8 +8,7 @@ export class DishesService{
   }
 
   getDish(){
-    // return Promise.resolve(DISHES);
-    return this.http.get('/api/dishes')
+    return this.http.get(AppSettings.API_URL + '/api/dishes')
       .map(res => res.json());
   }
 

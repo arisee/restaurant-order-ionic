@@ -5,7 +5,8 @@ export class TableProcessingOrder {
   customerName: string;
   status : number;
   createdDate: Date;
-
+  phone: string;
+  userId : number;
   constructor() {
     this.items = [];
     this.customerName = "";

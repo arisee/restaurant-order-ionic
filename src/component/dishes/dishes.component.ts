@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavParams} from "ionic-angular";
+import { MenuController, NavParams } from "ionic-angular";
 import {Dish} from "./shared/dish.model";
 import {DishesService} from "./shared/dishes.service";
 
@@ -16,7 +16,8 @@ export class DishesComponent {
     search:""
   };
 
-  constructor(public dishesService: DishesService,
+  constructor(public menuCtl : MenuController,
+              public dishesService: DishesService,
               public params: NavParams) {
   }
 
@@ -29,5 +30,8 @@ export class DishesComponent {
     // this.dishesService.getDish()
     //   .then(dishes => this.dishes = dishes);
 
+  }
+  openMenu(){
+    this.menuCtl.toggle();
   }
 }

@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>Món ăn đặc sắc</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let dish of dishes">
+    <img src="{{dish.image}}"/>
+    <p class="name">{{dish.name}}</p>
+    <p class="price">{{dish.price}} VND</p>
+  </ion-card>
+</ion-content>

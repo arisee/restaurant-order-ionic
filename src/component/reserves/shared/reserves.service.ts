@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { RESERVES } from "./mock-reserves";
 import { Reserve } from "./reserve.model";
 import { Http } from "@angular/http";
+import { AppSettings } from "../../main/shared/AppSettings";
 @Injectable()
 export class ReservesService {
   RESERVES: Array<Reserve>;
@@ -11,16 +12,16 @@ export class ReservesService {
   }
 
   getReserve(){
-    return this.http.get('/api/reserves')
+    return this.http.get(AppSettings.API_URL + '/api/reserves')
       .map(res => res.json())
   }
 
   create(body){
-    return this.http.post('/api/reserves',body);
+    return this.http.post(AppSettings.API_URL + '/api/reserves',body);
   }
 
   findByTableId(tableId : number){
-    return this.http.get('/api/reserves/tableId/' + tableId)
+    return this.http.get(AppSettings.API_URL + '/api/reserves/tableId/' + tableId)
       .map(res => res.json());
   }
 

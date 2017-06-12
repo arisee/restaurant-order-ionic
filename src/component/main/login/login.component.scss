@@ -11,7 +11,7 @@ page-login {
   }
 
   .login {
-    background-image: url('../assets/image/bg.jpg');
+    background-image: url('../assets/image/bg_lg2.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -33,6 +33,16 @@ page-login {
     .item-md {
       padding-left: 0px;
       background-color: transparent;
+    }
+
+    .item-wp{
+      background-color: transparent;
+      color: white;
+    }
+
+    .item-ios{
+      background-color: transparent;
+      color: white;
     }
 
     ion-item {

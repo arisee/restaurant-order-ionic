@@ -1,39 +1,40 @@
 <ion-header>
-  <ion-toolbar>
-    <button ion-button icon-only menuToggle (click)="takeMeBack()">
-      <ion-icon name="arrow-round-back"></ion-icon>
-    </button>
+  <ion-navbar #backButton color="danger">
     <ion-title>
-    <span>Đặt món</span>
-    <ion-icon name="checkmark" (click)="save()"></ion-icon>
+      <span>Đặt món</span>
     </ion-title>
-  </ion-toolbar>
+  </ion-navbar>
+  <!--<ion-toolbar >-->
+    <!--&lt;!&ndash;<button ion-button icon-only menuToggle (click)="takeMeBack()">&ndash;&gt;-->
+      <!--&lt;!&ndash;<ion-icon name="arrow-round-back"></ion-icon>&ndash;&gt;-->
+    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!---->
+  <!--</ion-toolbar>-->
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #EFF3F2">
   <div *ngIf="tableProcessingOrder!= null">
     <div name="information" float="left" width="80%">
       <ion-card *ngFor="let item of tableProcessingOrder.items;let i = index" [attr.data-index]="i" class="item"
                 [ngClass]="{'notAvailabe':item.status == 1,'available': item.status == 0,'finish': item.status == 2}">
-        <ion-icon name="trash" item-right *ngIf="item.status == 0" (click)="deleteItem(i)"
+        <ion-icon name="trash" item-right *ngIf="item.status == 0" (click)="deleteItem(item.id)"
                   class="icon-remove"></ion-icon>
         <ion-card-header class="card-header">{{item.dish.name}}</ion-card-header>
         <ion-card-content>
           Ghi chú: {{item.description}}<br/>
           Số lượng: {{item.quantity}}
         </ion-card-content>
-        <!--<ion-spinner name="bubbles" *ngIf="item.status == 0" class="icon-status" </ion-spinner>-->
       </ion-card>
     </div>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-title>
       <span *ngIf="customerName != ''">{{customerName}}</span>
       <ion-icon name="add-circle" (click)="pushMenuPage()"></ion-icon>
-      <ion-icon name="person-add" (click)="setCustomerName()"></ion-icon>
+      <ion-icon name="person-add" (click)="setInformationCustomer()"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-footer>

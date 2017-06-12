@@ -20,7 +20,8 @@ export class LoginPage {
     this.loginForm = formBuilder.group({
       username: ['', Validators.compose([Validators.pattern('[0-9a-zA-Z]*'), Validators.required])],
       password: ['', Validators.compose([Validators.pattern('[0-9a-zA-Z]*'), Validators.required])]
-    })
+    });
+    console.log('constructor login');
   }
 
   login() {
@@ -32,10 +33,16 @@ export class LoginPage {
       .subscribe(user => {
         this.user = user;
         this.loginService.getUser(user);
+        this.createUser(this.user);
         this.pushHome();
       }, error => {
         this.showAlert();
       });
+  }
+
+  createUser(user) {
+    console.log('User created!')
+    this.events.publish('user:created', user);
   }
 
   pushHome() {

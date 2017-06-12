@@ -1,11 +1,11 @@
-import {NgModule, ErrorHandler} from "@angular/core";
-import {IonicApp, IonicModule, IonicErrorHandler} from "ionic-angular";
-import {MyApp} from "./app.component";
-import {TableModule} from "../component/tables/tables.module";
-import {DishesModule} from "../component/dishes/dishes.module";
-import {ReservesModule} from "../component/reserves/reserves.module";
-import {MainModule} from "../component/main/main.module";
-import {OrderModule} from "../component/orders/orders.module";
+import { ErrorHandler, NgModule } from "@angular/core";
+import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
+import { MyApp } from "./app.component";
+import { TableModule } from "../component/tables/tables.module";
+import { DishesModule } from "../component/dishes/dishes.module";
+import { ReservesModule } from "../component/reserves/reserves.module";
+import { MainModule } from "../component/main/main.module";
+import { OrderModule } from "../component/orders/orders.module";
 
 @NgModule({
   declarations: [

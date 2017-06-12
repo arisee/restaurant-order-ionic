@@ -1,5 +1,17 @@
 move-component{
-  ion-content{
+  .select-text{
+    color: black;
+  }
 
+  .item-input .label-md, .item-select .label-md, .item-datetime .label-md{
+    color: black;
+  }
+
+  ion-content ion-item ion-select .select-text{
+    color: black;
+  }
+
+  .select-md .select-icon .select-icon-inner{
+    color: black;
   }
 }

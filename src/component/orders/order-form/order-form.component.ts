@@ -16,13 +16,13 @@ export class OrderFormComponent{
   filter = {
     search:""
   };
-  tableProcessingOrder: TableProcessingOrder;
+  tableProcessingOrder: TableProcessingOrder = null;
   constructor(public orderItemService: OrderItemService,
               public navCtrl: NavController,
               public navParams: NavParams,
               public dishesSevice : DishesService) {
     this.table = this.navParams.get('table');
-    this.tableProcessingOrder = this.navParams.get('tableProcessingOrders');
+    this.tableProcessingOrder = this.navParams.get('tableProcessingOrder');
   }
 
   ionViewWillEnter(){
@@ -35,7 +35,8 @@ export class OrderFormComponent{
   pushOrderItemPage(dish:Dish){
     this.navCtrl.push(OrderItemComponent,{
       dish:dish,
-      table:this.table
+      table:this.table,
+      tableProcessingOrder : this.tableProcessingOrder
     });
   }
 }

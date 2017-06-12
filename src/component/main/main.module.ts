@@ -1,15 +1,16 @@
 import {NgModule} from "@angular/core";
 import {HomePage} from "./home/home.component";
 import {LoginPage} from "./login/login.component";
-import {MenuDirective} from "./shared/menu.directive";
 import {IonicModule} from "ionic-angular";
 import {HomeService} from "./shared/home.service";
 import {LoginService} from "./shared/login.service";
+import { OutstandingDishComponent } from "./outstanding-dish/outstanding-dish.component";
+import { OutstandingDishService } from "./shared/outstanding-dish.service";
 @NgModule({
   declarations:[
     HomePage,
     LoginPage,
-    MenuDirective
+    OutstandingDishComponent
   ],
   imports:[
     IonicModule.forRoot(HomePage)
@@ -17,14 +18,14 @@ import {LoginService} from "./shared/login.service";
   entryComponents:[
     HomePage,
     LoginPage,
-    MenuDirective
+    OutstandingDishComponent
   ],
   exports:[
-    MenuDirective
   ],
   providers:[
     HomeService,
-    LoginService
+    LoginService,
+    OutstandingDishService
   ]
 })
 

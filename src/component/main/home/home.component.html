@@ -1,36 +1,37 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
-    <ion-grid>
-      <ion-row>
-        <ion-col width-10>
-          <ion-icon name="menu" (click)="openMenu()"></ion-icon>
-        </ion-col>
-        <ion-col width-90>
-          <ion-title>Home</ion-title>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-navbar hideBackButton="true" color="danger">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon name="menu" (click)="openMenu()"></ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <ion-title>Trang chủ</ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<menu-directive></menu-directive>
-
-<ion-content>
-  <ion-card>
-    <img src="assets/image/home1.jpg"/>
-    <div class="card-title">Thịt</div>
-    <div class="card-subtitle">Nổi bật</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="assets/image/home2.jpg"/>
-    <div class="card-title">Rau</div>
-    <div class="card-subtitle">Nổi bật</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="assets/image/home3.png"/>
+<ion-content style="background-color: #EFF3F2">
+  <ion-card (click)="pushPage(1)">
+    <img src="assets/image/dish/grilled/grilled1.jpg"/>
     <div class="card-title">Nướng</div>
     <div class="card-subtitle">Nổi bật</div>
   </ion-card>
+
+  <ion-card (click)="pushPage(3)">
+    <img src="assets/image/dish/dry/cakho.jpg"/>
+    <div class="card-title">Kho</div>
+    <div class="card-subtitle">Nổi bật</div>
+  </ion-card>
+
+  <ion-card (click)="pushPage(2)">
+    <img src="assets/image/dish/salad/salad.jpg"/>
+    <div class="card-title">Salad</div>
+    <div class="card-subtitle">Nổi bật</div>
+  </ion-card>
+
 </ion-content>

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { TABLE_PROCESSING_ORDERS } from "./mock-table-processing-order";
 import { TableProcessingOrder } from "./table-processing-order.model";
 import { Http } from "@angular/http";
+import { AppSettings } from "../../main/shared/AppSettings";
 @Injectable()
 export class TableProcessingOrdersServive {
   TABLE_PROCESSING_ORDERS: Array<TableProcessingOrder>;
@@ -12,39 +13,41 @@ export class TableProcessingOrdersServive {
   }
 
   findAllOrder() {
-    return this.http.get('/api/processingOrders')
+    return this.http.get(AppSettings.API_URL + '/api/processingOrders')
       .map(res => res.json());
   }
 
   setStatus(tableId: number, status: number) {
-    return this.http.post('api/tables/' + tableId + '/status/' + status, {})
+    return this.http.post(AppSettings.API_URL + '/api/tables/' + tableId + '/status/' + status, {})
   }
 
   addOrder(body) {
-    this.http.post('api/processingOrders', body)
-      .subscribe(res => {
-        console.log('add order successful!');
-      }, error2 => {
-        console.log('add order fail!');
-      })
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders', body);
   }
 
   updateOrder(tableId, body) {
-    this.http.post('api/processingOrders/' + tableId, body)
-      .subscribe(res => {
-        console.log('update order successful!');
-      }, error2 => {
-        console.log('update order fail!');
-      })
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders/' + tableId, body);
+  }
+
+  addItem(tableId, body) {
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders/addItem/' + tableId, body);
+  }
+
+  deteleItem(tableId: number, id: number) {
+    return this.http.delete(AppSettings.API_URL + '/api/processingOrdersItem/' + tableId + '/id/' + id);
+  }
+
+  delete(tableId: number) {
+    return this.http.delete(AppSettings.API_URL + '/api/processingOrders/' + tableId);
   }
 
   addCustomerName(tableId: number, customerName: string) {
-    return this.http.post('api/processingOrders/' + tableId + '/customer/' + customerName, {})
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders/' + tableId + '/customer/' + customerName, {})
       .map(res => res.json());
   }
 
   getPsOrderByTableId(tableId: number) {
-    return this.http.get('/api/processingOrders/' + tableId)
+    return this.http.get(AppSettings.API_URL + '/api/processingOrders/' + tableId)
       .map(res => {
         return res.json()
       });
@@ -54,7 +57,7 @@ export class TableProcessingOrdersServive {
     let body = {
       tableId: tableId
     };
-    return this.http.post('/api/processingOrdes', body)
+    return this.http.post(AppSettings.API_URL + '/api/processingOrdes', body)
       .map(res => res.json())
       .subscribe(
         res => alert('successful'),
@@ -63,20 +66,17 @@ export class TableProcessingOrdersServive {
   }
 
   move(preTableId: number, disTable: number) {
-    return this.http.post('/api/processingOrders/' + preTableId + "/disTable/" + disTable, {});
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders/' + preTableId + "/disTable/" + disTable, {});
   }
 
-  save(tableId: number, body: any) {
-    this.getPsOrderByTableId(tableId)
-      .subscribe(res => {
-        this.updateOrder(tableId, body);
-      }, error => {
-        this.addOrder(body);
-        this.setStatus(tableId, 0)
-          .subscribe(res => {
-          }, error2 => {
-          });
-      });
+  total(tableId: number) {
+    return this.http.get(AppSettings.API_URL + '/api/processingOrders/total/' + tableId)
+      .map(res => res.json());
+  }
+
+  pay(tableId: number, userId: number) {
+    return this.http.post(AppSettings.API_URL + '/api/processingOrders/' + tableId + "/user/" + userId, {})
+      .map(res => res.json());
   }
 
   getTableProcessingOrder(tableID: number) {
@@ -90,15 +90,4 @@ export class TableProcessingOrdersServive {
     }
     return tableProcessingOrder;
   }
-
-  // getOrder(): TableProcessingOrder {
-  //   return this.processingOrder;
-  // }
-
-  // save(order: TableProcessingOrder, table: Table) {
-  //   table.status = TableStatus.NOT_AVAILABLE;
-  //   TABLE_PROCESSING_ORDERS.push(order);
-  // }
-
-
 }

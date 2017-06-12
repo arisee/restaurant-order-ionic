@@ -1,17 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Danh sách bàn đặt trước</ion-title>
+  <ion-navbar #backButton color="danger">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon name="menu" (click)="openMenu()"></ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <ion-title>Danh sách đặt trước</ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #EFF3F2">
   <div *ngFor="let reserve of (reserves)">
     <reserve-directive [item]="reserve"></reserve-directive>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-icon name="add-circle" (click)="pushPageForm()"></ion-icon>
   </ion-toolbar>
 </ion-footer>

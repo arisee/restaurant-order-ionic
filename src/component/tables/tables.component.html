@@ -1,43 +1,26 @@
 <ion-header>
-  <ion-navbar>
+  <!--<ion-navbar #backButton color="primary" >-->
+  <!--</ion-navbar>-->
+  <ion-toolbar color="danger">
     <!--<button ion-button icon-only menuToggle (click)="takeMeBack()">-->
       <!--<ion-icon name="arrow-round-back"></ion-icon>-->
     <!--</button>-->
     <ion-title>
-      Danh sách bàn
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
       <ion-grid>
         <ion-row>
-          <ion-col width-50>
-            <img src="assets/image/use.jpg">
-            <ion-label>Ngọc Huy</ion-label>
+          <ion-col width-10>
+            <ion-icon name="menu" (click)="openMenu()"></ion-icon>
           </ion-col>
-          <ion-col width-50>
-
+          <ion-col width-90>
+            <ion-title>Danh sách bàn</ion-title>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-item-group>
-      <ion-item-divider color="light">Menu</ion-item-divider>
-      <ion-item (click)="pushTablePage()">Danh sách bàn</ion-item>
-      <ion-item (click)="pushListDish()">Danh sách món ăn</ion-item>
-      <ion-item [navPush]="pushReservesPage">Danh sách bàn đặt trước</ion-item>
-    </ion-item-group>
-  </ion-content>
-</ion-menu>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
-
-<ion-content>
+<ion-content style="background-color: #EFF3F2">
   <ion-grid>
     <ion-row>
       <ion-col width-50>

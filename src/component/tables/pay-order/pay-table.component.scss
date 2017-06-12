@@ -1,3 +1,12 @@
 pay-table-component{
-
+  ion-content{
+    text-align: center;
+    font-size: 16px;
+    .pay{
+      padding-bottom: 10px;
+      font-weight: bold;
+      float: right;
+      padding-right: 10px;
+    }
+  }
 }

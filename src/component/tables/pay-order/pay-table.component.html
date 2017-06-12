@@ -1,26 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Thanh toán</ion-title>
+  <ion-navbar color="danger">
+    <ion-title></ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #EFF3F2">
   <ion-card>
-    <ion-item>
-      {{table.name}}<br/>
-      {{table.location}}<br/>
-    </ion-item>
+    <ion-card-header>
+      {{table.name}}
+      {{table.location}}
+    </ion-card-header>
+    <ion-card-content *ngFor="let item of items">
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{item.dish.name}}</ion-col>
+          <ion-col>{{item.quantity}}</ion-col>
+          <ion-col>{{item.dish.price}} VND</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <p class="pay">
+      Tổng tiền :
+      {{total}} VND
+    </p>
+    <button ion-button color="danger" block (click)="pay()">Thanh toán</button>
   </ion-card>
-  <ion-card>
-    <ion-item *ngFor="let item of items">
-      {{item.dish.name}}<br/>
-      {{item.quantity}}x{{item.dish.price}} VND
-    </ion-item>
-  </ion-card>
-  <ion-card>
-    <ion-item>
-      Tổng tiền : {{total}} VND
-    </ion-item>
-  </ion-card>
-  <button ion-button block>Thanh toán</button>
 </ion-content>

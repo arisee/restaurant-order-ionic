@@ -23,9 +23,15 @@ export class MoveTableComponent {
   }
 
   ionViewWillEnter() {
-    this.tableService.getTables().subscribe(res => {
-      this.tables = res;
-    })
+    // this.tableService.getTables().subscribe(res => {
+    //   this.tables = res;
+    // })
+    this.tableService.getByStatus('AVAILABLE')
+      .subscribe(res => {
+        this.tables = res;
+      },error => {
+        console.log('not found table by status');
+      })
   }
 
   move() {
@@ -44,7 +50,7 @@ export class MoveTableComponent {
               console.log('update status table fail!');
             });
         }, error2 => {
-          this.showAlert2();
+          console.log('error : not found table');
         })
     } else {
       this.showAlert1();
@@ -54,14 +60,6 @@ export class MoveTableComponent {
   showAlert1() {
     let alert = this.alertCtrl.create({
       subTitle: 'Chọn bàn muốn chuyển tới!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  showAlert2() {
-    let alert = this.alertCtrl.create({
-      subTitle: 'Bàn đã có order rồi!!',
       buttons: ['OK']
     });
     alert.present();

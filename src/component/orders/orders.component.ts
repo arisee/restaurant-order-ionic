@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { AlertController, NavController, NavParams, Platform, Tab } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import { AlertController, Navbar, NavController, NavParams, Platform } from "ionic-angular";
 import { OrderFormComponent } from "./order-form/order-form.component";
 import { Table } from "../tables/shared/table.model";
 import { TablesComponent } from "../tables/tables.component";
@@ -20,53 +20,43 @@ export class OrderComponent {
   isDisplay = false;
   pushTablePage: any;
   customerName: string = "";
+  phone: string = "";
   processingOrderItem = [];
-  tabBarElement: any;
+  @ViewChild('backButton') navBar: Navbar;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public currentTableProcessingOrderSerive: CurrentTableProcessingOrderService,
               public tableProcessingOrdersService: TableProcessingOrdersServive,
-              public alertCtrl: AlertController,
               public tableService: TableService,
+              public alertCtrl: AlertController,
               public platform: Platform) {
     this.pushTablePage = TablesComponent;
     this.table = this.navParams.get('table');
-    this.tabBarElement = document.querySelector('.tabbar.show-tabbar')
-
-    if (this.currentTableProcessingOrderSerive.getCurrenOrder() != null &&
-      this.currentTableProcessingOrderSerive.getCurrenOrder().tableId == this.table.id) {
-      this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
-      this.customerName = this.tableProcessingOrder.customerName;
-    } else {
-      this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
-        .subscribe(res => {
-            this.currentTableProcessingOrderSerive.setCurrenOrder(res);
-            this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
-            this.customerName = this.tableProcessingOrder.customerName;
-          }, error => {
-            let order: TableProcessingOrder = new TableProcessingOrder();
-            order.tableId = this.table.id;
-            order.status = 0;
-            order.customerName = "";
-            this.currentTableProcessingOrderSerive.setCurrenOrder(order);
-            this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
-          }
-        );
-    }
-
+    this.getOrder();
   }
 
-  // customBackButton() {
-  //   this.platform.registerBackButtonAction(() => {
-  //     let view = this.navCtrl.getActive();
-  //     if(view.instance instanceof OrderComponent){
-  //       this.navCtrl.push(TablesComponent);
-  //     }else{
-  //       this.navCtrl.pop();
-  //     }
-  //   })
-  // }
+  getOrder() {
+    this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
+      .subscribe(res => {
+        this.tableProcessingOrder = res;
+        this.customerName = this.tableProcessingOrder.customerName;
+        this.phone = this.tableProcessingOrder.phone;
+      }, error2 => {
+        let order: TableProcessingOrder = new TableProcessingOrder();
+        order.tableId = this.table.id;
+        order.customerName = "";
+        order.phone = "";
+        this.currentTableProcessingOrderSerive.setCurrenOrder(order);
+        this.tableProcessingOrder = this.currentTableProcessingOrderSerive.getCurrenOrder();
+      })
+  }
+
+  ionViewDidEnter() {
+    this.navBar.backButtonClick = () => {
+      this.navCtrl.push(TablesComponent);
+    };
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');
@@ -78,7 +68,8 @@ export class OrderComponent {
 
   pushMenuPage() {
     this.navCtrl.push(OrderFormComponent, {
-      table: this.table
+      table: this.table,
+      tableProcessingOrder: this.tableProcessingOrder
     });
   }
 
@@ -86,72 +77,133 @@ export class OrderComponent {
     this.navCtrl.push(TablesComponent);
   }
 
-  save() {
-    if (this.customerName != "") {
-      if (this.tableProcessingOrder != null) {
-        this.tableProcessingOrdersService.save(this.table.id, this.tableProcessingOrder);
-      } else {
-        console.log('tableProcessingOrder is null')
-      }
-      this.navCtrl.push(TablesComponent);
-    } else {
-      this.cutomerNameNull();
-    }
-  }
-
-  deleteItem(index: number) {
-    this.currentTableProcessingOrderSerive.delete(index, this.table.id);
-  }
-
-  setCustomerName() {
-    if (this.customerName == "") {
-      let alert = this.alertCtrl.create({
-        title: 'Tên khách hàng',
-        inputs: [
-          {
-            name: 'customerName',
-            placeholder: 'Nhập tên khách hàng'
-          }
-        ],
-        buttons: [
-          {
-            text: 'Hủy',
-            role: 'cancel'
-          },
-          {
-            text: 'Thêm',
-            handler: data => {
-              this.customerName = data.customerName;
-              this.currentTableProcessingOrderSerive.addCustomerName(data.customerName);
+  deleteItem(id: number) {
+    this.tableProcessingOrdersService.deteleItem(this.table.id, id)
+      .subscribe(res => {
+        this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
+          .subscribe(res => {
+            this.tableProcessingOrder = res;
+            if (res.items.length == 0) {
+              this.tableProcessingOrdersService.delete(this.table.id)
+                .subscribe(res => {
+                  this.tableService.setStatus(this.table.id, 1)
+                    .subscribe(res => {
+                      this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
+                        .subscribe(res => {
+                          console.log('load order success');
+                        }, error2 => {
+                          console.log('not found order');
+                        })
+                    }, error2 => {
+                      console.log('update status table fail');
+                    });
+                }, error2 => {
+                  console.log('delete order fail');
+                })
             }
-          }
-        ],
+          }, error2 => {
+            console.log('load order fail!');
+          })
+      }, error2 => {
+        console.log('delete item fail!');
       });
-      alert.present();
-    } else {
-      this.updateCustomerName();
-    }
   }
 
-  updateCustomerName() {
+  setInformationCustomer() {
+    this.tableProcessingOrdersService.getPsOrderByTableId(this.table.id)
+      .subscribe(res => {
+        if (this.customerName == "" || this.phone == "") {
+          let alert = this.alertCtrl.create({
+            title: 'Thông tin khách hàng',
+            inputs: [
+              {
+                value: this.customerName,
+                name: 'customerName',
+                placeholder: 'Nhập tên khách hàng'
+              },
+              {
+                value: this.phone,
+                name: 'phone',
+                placeholder: 'Nhập số điện thoại'
+              }
+            ],
+            buttons: [
+              {
+                text: 'Hủy',
+                role: 'cancel'
+              },
+              {
+                text: 'Thêm',
+                handler: data => {
+                  this.customerName = data.customerName;
+                  this.phone = data.phone;
+                  let body = {
+                    tableId : this.tableProcessingOrder.tableId,
+                    customerName: data.customerName,
+                    phone: data.phone,
+                    status: this.tableProcessingOrder.status,
+                    items: this.tableProcessingOrder.items
+                  };
+                  this.tableProcessingOrdersService.updateOrder(this.table.id, body)
+                    .subscribe(res =>{
+                      this.customerName = data.customerName;
+                      this.phone = data.phone;
+                    },error2 => {
+                      console.log('update information customer fail');
+                    });
+                }
+              }
+            ],
+          });
+          alert.present();
+        } else {
+          this.updateInformationCustomer();
+        }
+      },error2 => {
+        this.orderNull();
+      })
+  }
+
+  updateInformationCustomer() {
     let alert = this.alertCtrl.create({
-      title: 'Tên khách hàng',
+      title: 'Thông tin khách hàng',
       inputs: [
         {
+          value: this.customerName,
           name: 'customerName',
           placeholder: 'Nhập tên khách hàng'
+        },
+        {
+          value: this.phone,
+          name: 'phone',
+          placeholder: 'Nhập số điện thoại'
         }
       ],
       buttons: [
         {
+          value: this.customerName,
           text: 'Hủy',
           role: 'cancel'
         },
         {
+          value: this.phone,
           text: 'Sửa',
           handler: data => {
-            this.customerName = data.customerName;
-            this.currentTableProcessingOrderSerive.addCustomerName(data.customerName);
+            this.phone = data.phone;
+            let body = {
+              tableId : this.tableProcessingOrder.tableId,
+              customerName: data.customerName,
+              phone: data.phone,
+              status: this.tableProcessingOrder.status,
+              items: this.tableProcessingOrder.items
+            };
+            this.tableProcessingOrdersService.updateOrder(this.table.id, body)
+              .subscribe(res =>{
+                this.customerName = data.customerName;
+                this.phone = data.phone;
+              },error2 => {
+                console.log('update information customer fail');
+              });
           }
         }
       ],
@@ -159,13 +211,19 @@ export class OrderComponent {
     alert.present();
   }
 
-  cutomerNameNull() {
+  informationCutomerNull() {
     let alert = this.alertCtrl.create({
-      subTitle: 'Vui lòng nhập tên khách hàng',
+      subTitle: 'Thông tin khách hàng trống',
       buttons: ['OK']
     });
     alert.present();
   }
 
-
+  orderNull() {
+    let alert = this.alertCtrl.create({
+      subTitle: 'Vui lòng chọn món trước',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 }

@@ -1,16 +1,49 @@
-// http://ionicframework.com/docs/v2/theming/
+app-component {
+  ion-menu{
+
+    .my-container{
+      color: white;
+      background-image: url('../assets/image/bg_lg3.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .user{
+        img {
+          width: 70px;
+          border-radius: 50px;
+          padding-top: 5px;
+        }
+        p{
+          font-size:13px;
+          float: left;
+        }
+      }
+
+      ion-icon{
+        font-size: 22px;
+      }
+
+      button{
+        color: white;
+        font-size: 13px;
+      }
+    }
+
+    .item-md {
+      background-color: transparent;
+    }
+
+    .item-wp{
+      background-color: transparent;
+      color: white;
+    }
+
+    .item-ios{
+      background-color: transparent;
+      color: white;
+    }
+  }
+}
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+

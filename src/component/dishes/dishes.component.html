@@ -1,10 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Danh sách món ăn</ion-title>
+  <ion-navbar color="danger">
+    <ion-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-10>
+            <ion-icon name="menu" (click)="openMenu()"></ion-icon>
+          </ion-col>
+          <ion-col width-90>
+            <ion-title>Danh sách món ăn</ion-title>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #EFF3F2">
   <ion-searchbar placeholder="Tìm kiếm" [(ngModel)]="filter.search"></ion-searchbar>
 
   <ion-grid>
@@ -22,11 +33,13 @@
         <ion-item>
           <ion-select [(ngModel)]="filter.category">
             <ion-option value="" selected="true">Tất cả</ion-option>
-            <ion-option value="1">Món chính</ion-option>
-            <ion-option value="2">Món phụ</ion-option>
-            <ion-option value="3">Món nướng</ion-option>
-            <ion-option value="4">Canh</ion-option>
-            <ion-option value="5">Lẩu</ion-option>
+            <ion-option value="1">Nướng</ion-option>
+            <ion-option value="2">Salad</ion-option>
+            <ion-option value="3">Kho</ion-option>
+            <ion-option value="4">Chiên</ion-option>
+            <ion-option value="5">Canh</ion-option>
+            <ion-option value="6">Rau</ion-option>
+            <ion-option value="7">Trộn</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>

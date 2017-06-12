@@ -1,5 +1,21 @@
 order-item-component{
-  .btn{
-    text-align: center;
+  .name{
+    font-size: 18px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .price{
+    font-size: 15px;
+    padding: 5px;
+  }
+
+  .quantity{
+    font-size: 15px;
+    padding: 5px;
+  }
+
+  .note{
+    font-size: 15px;
+    padding: 5px;
   }
 }
